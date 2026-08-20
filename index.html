@@ -56,7 +56,6 @@
             background-color: rgba(34, 197, 94, 0.1);
             border-radius: 4px;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -75,10 +74,8 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950 min-h-screen flex flex-col">
 
-    <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- Admin Login Modal -->
     <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
             <div class="flex justify-between items-center border-b border-slate-800 pb-3">
@@ -113,7 +110,6 @@
         </div>
     </div>
 
-    <!-- Lightbox Modal for Screenshots -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
@@ -126,7 +122,6 @@
                 </button>
             </div>
 
-            <!-- Image Main Display with Nav Arrows -->
             <div class="relative p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950/60 group">
                 <button onclick="navigateLightbox(-1)" class="absolute left-4 bg-slate-900/80 hover:bg-brand-500 hover:text-slate-950 text-slate-200 p-2.5 rounded-full border border-slate-700 transition z-10">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -146,7 +141,6 @@
         </div>
     </div>
 
-    <!-- Navigation Bar -->
     <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -166,12 +160,10 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <!-- WhatsApp Button -->
                 <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="hidden sm:flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 transition shadow-lg shadow-emerald-500/20">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
                     Let's Talk
                 </a>
-                <!-- Admin Lock Toggle Button -->
                 <button id="admin-status-btn" onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition">
                     <span id="admin-indicator-dot" class="w-2 h-2 rounded-full bg-slate-500"></span>
                     <span id="admin-btn-text">Admin Login</span>
@@ -180,12 +172,10 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
         
         <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-            <!-- Active Markets Visual Country Flags Bar -->
             <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 shadow-md">
                 <span class="text-slate-400 text-xs font-bold mr-1 flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -236,14 +226,11 @@
         </a>
     </header>
 
-    <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full space-y-16 pb-20">
 
-        <!-- SECTION: ABOUT ME (With Top Key Performance Highlights) -->
         <section id="about" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 relative overflow-hidden">
             <div class="flex flex-col lg:flex-row items-start justify-between gap-8">
                 
-                <!-- Left Profile Summary -->
                 <div class="space-y-6 flex-1">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
@@ -254,7 +241,6 @@
                         <p class="text-brand-400 font-semibold text-sm mt-1" data-editable="true" data-text-key="about_title">Senior Performance Marketing Strategist</p>
                     </div>
 
-                    <!-- KEY PERFORMANCE NUMBERS FIRST -->
                     <div class="bg-slate-950/90 p-5 rounded-2xl border border-brand-500/30 space-y-3">
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                             <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
@@ -284,7 +270,6 @@
                         </div>
                     </div>
 
-                    <!-- Narrative Bio -->
                     <div class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed" data-editable="true" data-text-key="about_bio">
                         <p>
                             As a Performance Marketing Engineer, I bring a ruthless, data-driven methodology to media buying. I don't just "run ads"—I architect full-funnel acquisition systems designed to slash Customer Acquisition Cost (CAC) and maximize Lifetime Value (LTV) across the MENA region.
@@ -294,14 +279,12 @@
                         </p>
                     </div>
 
-                    <!-- Key Focus & Regional Markets Grid -->
                     <div class="mt-6 w-full pt-4 border-t border-slate-800 text-left text-xs space-y-3">
                         <div class="flex justify-between items-center text-slate-400">
                             <span class="text-slate-500">Core Focus:</span>
                             <span class="text-slate-200 font-semibold" data-editable="true" data-text-key="about_focus">Scale & Unit Economics</span>
                         </div>
                         
-                        <!-- Country Flags Feature Grid (Clean Grid) -->
                         <div>
                             <span class="block text-slate-500 mb-2 font-medium">Regional MENA & GCC Footprint:</span>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -350,7 +333,6 @@
                     </div>
                 </div>
 
-                <!-- Right Profile Image Container (Personal Photo Included) -->
                 <div class="w-full lg:w-96 space-y-3">
                     <div class="screenshot-box relative rounded-2xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[260px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-about" data-card-id="about">
                         
@@ -364,7 +346,6 @@
                             <p class="text-[10px] text-slate-500">Unlock Admin mode to upload profile picture or credential proof</p>
                         </div>
 
-                        <!-- Admin Controls Row -->
                         <div class="mt-2 w-full flex items-center justify-between gap-2 px-1 admin-only hidden">
                             <label class="flex-1 cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center justify-center gap-1.5">
                                 <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
@@ -377,7 +358,6 @@
                             </button>
                         </div>
 
-                        <!-- Dimension & Aspect Ratio Controls Drawer -->
                         <div id="settings-drawer-about" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
                             <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
                                 <span class="font-bold text-white text-[11px]">Image Dimensions & Ratio</span>
@@ -410,7 +390,6 @@
                             </div>
                         </div>
 
-                        <!-- Thumbnails bar -->
                         <div id="thumbs-about" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
                     </div>
                 </div>
@@ -418,7 +397,6 @@
             </div>
         </section>
 
-        <!-- Case Studies Section -->
         <section id="case-studies" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-6">
                 <div>
@@ -426,7 +404,6 @@
                     <p class="text-sm text-slate-400 mt-1" data-editable="true" data-text-key="vault_desc">Detailed performance metrics across MENA verticals backed by verified account screenshots.</p>
                 </div>
                 
-                <!-- Category Filter Buttons -->
                 <div class="flex flex-wrap gap-2" id="filter-buttons">
                     <button onclick="filterCategory('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition">All Projects</button>
                     <button onclick="filterCategory('ecom')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">E-Commerce & Retail</button>
@@ -435,10 +412,9 @@
                 </div>
             </div>
 
-            <!-- Case Study Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="case-studies-grid">
 
-                <!-- CARD 1: Accessories & Watches Launch/Sprint (Multi-Image 1.jpg, 2.jpg & 8.jpg) -->
+                <!-- CARD 1: Accessories & Watches Scale -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -468,7 +444,6 @@
                             Engineered high-velocity launch sprints for men's watches and accessories. Scaled monthly gross sales past 1.25M EGP (+100% MoM) and generated 266.7K EGP in a 9-day sprint (+902% revenue surge) with top UGC Reels achieving 13.75x ROAS.
                         </p>
 
-                        <!-- Multi-Image Container (1.jpg, 2.jpg & 8.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-1" data-card-id="1">
                             <div id="img-container-1" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-1" src="1.jpg" alt="Accessories Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('1')" onerror="handleImageError(this, '1')">
@@ -512,7 +487,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 2: Sales Fashion Men (3.jpg) -->
+                <!-- CARD 2: Men's Fashion Launch -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -542,7 +517,6 @@
                             Engineered a high-conversion sales framework for men's apparel and accessories. Scaled 30-day sales volume to 296.1K EGP (+376% MoM) and 364 orders, scaling store CVR to 1.22% with strict CPA controls.
                         </p>
 
-                        <!-- Multi-Image Container (3.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-3" data-card-id="3">
                             <div id="img-container-3" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-3" src="3.jpg" alt="Men's Fashion Sales Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('3')" onerror="handleImageError(this, '3')">
@@ -586,7 +560,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 3: Cosmetics & Skincare E-Com Scale (4.jpg) -->
+                <!-- CARD 3: Cosmetics & Skincare Scale -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -616,7 +590,6 @@
                             Architected a full-funnel ASC+ & CBO framework, deploying custom API tracking to bypass iOS14+ signal loss. Strategic bundle offers boosted AOV to 816 EGP, maintaining a highly profitable 4.55x Blended ROAS at high-spend velocity (1.04M EGP).
                         </p>
 
-                        <!-- Multi-Image Container (4.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-4" data-card-id="4">
                             <div id="img-container-4" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-4" src="4.jpg" alt="Cosmetics Scale Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('4')" onerror="handleImageError(this, '4')">
@@ -660,7 +633,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 4: Sales Fashion Women (5.jpeg) -->
+                <!-- CARD 4: Women's Fashion Surge -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -690,7 +663,6 @@
                             Deployed weekly short-form video styling guides and UGC try-on hauls to combat seasonal creative fatigue. Top-performing ad sets achieved peak returns of 20.91x and 20.78x Purchase ROAS while holding CPC below 4.50 EGP.
                         </p>
 
-                        <!-- Multi-Image Container (5.jpeg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-5" data-card-id="5">
                             <div id="img-container-5" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-5" src="5.jpeg" alt="Women's Fashion Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('5')" onerror="handleImageError(this, '5')">
@@ -734,7 +706,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 5: Sales Perfumes & Niche Fragrances (7.jpg) -->
+                <!-- CARD 5: Perfumes & Fragrances Scale -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -764,7 +736,6 @@
                             Overcame online fragrance buying friction by combining risk-free discovery sample kits with visual scent breakdowns. Generated 882.1K EGP in revenue across 1,148 purchases with a 768.39 EGP AOV.
                         </p>
 
-                        <!-- Multi-Image Container (7.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-7" data-card-id="7">
                             <div id="img-container-7" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-7" src="7.jpg" alt="Sales Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('7')" onerror="handleImageError(this, '7')">
@@ -808,7 +779,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 6: Velora Clinics Messages Funnel (Multi-Image 15.jpg & 16.jpg) -->
+                <!-- CARD 6: Velora Clinics Messages (15.PNG & 16.PNG) -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="clinics">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -838,10 +809,9 @@
                             Restructured the offline acquisition pipeline by deploying low-friction Tripwire offers to slash frontend CPL. Combined unscripted UGC with a 15-minute speed-to-lead SLA, driving 1,500+ hyper-qualified inquiries at 4.12 EGP/message and doubling the in-clinic show-up rate and backend LTV.
                         </p>
 
-                        <!-- Multi-Image Container (15.jpg & 16.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-15" data-card-id="15">
                             <div id="img-container-15" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-15" src="15.jpg" alt="Velora Clinics Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
+                                <img id="img-15" src="15.PNG" alt="Velora Clinics Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
                             </div>
 
                             <div id="placeholder-15" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -882,7 +852,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 7: High-Ticket Qatar TikTok Ads (18.PNG) -->
+                <!-- CARD 7: Qatar Massage Hardware (18.PNG) -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="gcc">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -912,7 +882,6 @@
                             Cracked the high-CPM Gulf auction for a Premium High-Ticket product. Engineered hyper-localized TikTok hooks to filter intent, generating 1,289 affluent Sales Qualified Leads (SQL) at just 1.38 OMR CPL, bypassing vanity engagement to maximize pipeline velocity and closed deals.
                         </p>
 
-                        <!-- Multi-Image Container (18.PNG) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-18" data-card-id="18">
                             <div id="img-container-18" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
                                 <img id="img-18" src="18.PNG" alt="Qatar TikTok Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('18')" onerror="handleImageError(this, '18')">
@@ -956,7 +925,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 8: Perfumes EasyOrder Scale (9.jpg) -->
+                <!-- CARD 8: EasyOrder Perfumes (14.jpg) -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
@@ -986,10 +955,9 @@
                             Scaled an emerging perfume brand directly through EasyOrder checkout funnels. Achieved a solid 1.78% store conversion rate across 32.24K targeted visits with 1.35K add-to-carts and 919 initiate checkouts, unlocking high cash flow and net contribution margins.
                         </p>
 
-                        <!-- Multi-Image Container (9.jpg) -->
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-9" data-card-id="9">
                             <div id="img-container-9" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-9" src="9.jpg" alt="EasyOrder Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
+                                <img id="img-9" src="14.jpg" alt="EasyOrder Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
                             </div>
 
                             <div id="placeholder-9" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -1033,7 +1001,6 @@
             </div>
         </section>
 
-        <!-- Dynamic Case Study Builder Form (Admin Only) -->
         <section id="add-study" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 relative overflow-hidden admin-only hidden">
             <div class="max-w-3xl">
                 <span class="text-xs font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">Admin Tool</span>
@@ -1083,7 +1050,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="glass-panel border-t border-slate-800 py-8 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 space-y-3">
             <p class="text-slate-300 font-semibold" data-editable="true" data-text-key="footer_copy">© 2026 Ahmed Essam Mahmoud — Senior Performance Marketing Strategist.</p>
@@ -1112,33 +1078,29 @@
         </div>
     </footer>
 
-    <!-- JavaScript Application Logic -->
     <script>
-        const STORAGE_MULTI_IMAGES_KEY = 'ae_portfolio_multi_images_v8';
-        const STORAGE_CUSTOM_CARDS_KEY = 'ae_portfolio_custom_cards_v8';
-        const STORAGE_SETTINGS_KEY = 'ae_portfolio_img_settings_v5';
-        const STORAGE_TEXT_EDITS_KEY = 'ae_portfolio_text_edits_v2';
+        const STORAGE_MULTI_IMAGES_KEY = 'ae_portfolio_multi_images_v9';
+        const STORAGE_CUSTOM_CARDS_KEY = 'ae_portfolio_custom_cards_v9';
+        const STORAGE_SETTINGS_KEY = 'ae_portfolio_img_settings_v6';
+        const STORAGE_TEXT_EDITS_KEY = 'ae_portfolio_text_edits_v3';
         const ADMIN_PIN = '2004';
 
-        // IndexedDB Configuration
-        const DB_NAME = 'AE_Portfolio_DB_v5';
+        const DB_NAME = 'AE_Portfolio_DB_v6';
         const DB_VERSION = 1;
         const STORE_NAME = 'card_images';
 
-        // State object holding arrays of image URLs per card ID
         let cardImages = {
             '1': ['1.jpg', '2.jpg', '8.jpg'],
             '3': ['3.jpg'],
             '4': ['4.jpg'],
             '5': ['5.jpeg'],
             '7': ['7.jpg'],
-            '9': ['9.jpg'],
-            '15': ['15.jpg', '16.jpg'],
+            '9': ['14.jpg'],
+            '15': ['15.PNG', '16.PNG'],
             '18': ['18.PNG'],
             'about': ['personal photo.jpg']
         };
 
-        // Active selected image index per card ID
         let activeImageIndexes = {
             '1': 0,
             '3': 0,
@@ -1151,17 +1113,10 @@
             'about': 0
         };
 
-        // Image settings (fit, height, ratio) per card ID
         let imageSettings = {};
-
-        // Stored inline text edits
         let storedTextEdits = {};
-
-        // Active Lightbox state
         let currentLightboxCardId = null;
         let currentLightboxImgIndex = 0;
-
-        // Admin state
         let isAdminUnlocked = false;
 
         function openDB() {
@@ -1186,11 +1141,10 @@
                 store.put(cardImages, 'images_data');
                 localStorage.setItem(STORAGE_MULTI_IMAGES_KEY, JSON.stringify(cardImages));
             } catch (err) {
-                console.warn('IndexedDB save warning, attempting LocalStorage fallback', err);
                 try {
                     localStorage.setItem(STORAGE_MULTI_IMAGES_KEY, JSON.stringify(cardImages));
                 } catch (e) {
-                    console.error('LocalStorage quota exceeded', e);
+                    console.error(e);
                 }
             }
         }
@@ -1233,9 +1187,7 @@
                     canvas.height = height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
-
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-                    resolve(compressedDataUrl);
+                    resolve(canvas.toDataURL('image/jpeg', quality));
                 };
                 img.onerror = () => resolve(dataUrl);
             });
@@ -1262,8 +1214,7 @@
         });
 
         function checkSessionAdminState() {
-            const isUnl = sessionStorage.getItem('ae_admin_unlocked');
-            if (isUnl === 'true') {
+            if (sessionStorage.getItem('ae_admin_unlocked') === 'true') {
                 isAdminUnlocked = true;
             }
         }
@@ -1351,7 +1302,7 @@
                     }
                 });
             } catch (err) {
-                console.error('Error restoring text edits', err);
+                console.error(err);
             }
         }
 
@@ -1402,7 +1353,7 @@
                     cardImages[cardId].push(compressed);
                     loadedCount++;
                 } catch (e) {
-                    console.error('Error processing image file', e);
+                    console.error(e);
                 }
             }
 
@@ -1437,7 +1388,6 @@
                 placeholder.classList.remove('hidden');
             }
 
-            // Render Thumbnails Bar
             if (thumbsBar) {
                 thumbsBar.innerHTML = '';
                 if (images.length > 1) {
@@ -1575,7 +1525,7 @@
                     }
                 });
             } catch (err) {
-                console.error('Error restoring multi-images', err);
+                console.error(err);
             }
         }
 
@@ -1583,7 +1533,7 @@
             try {
                 localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(imageSettings));
             } catch (err) {
-                console.warn('Error saving settings', err);
+                console.warn(err);
             }
         }
 
@@ -1592,7 +1542,7 @@
                 const store = JSON.parse(localStorage.getItem(STORAGE_SETTINGS_KEY) || '{}');
                 imageSettings = store;
             } catch (err) {
-                console.error('Error restoring settings', err);
+                console.error(err);
             }
         }
 
@@ -1617,7 +1567,7 @@
             if (arr.length > 0) {
                 imgEl.src = arr[currentLightboxImgIndex];
                 counter.textContent = `Image ${currentLightboxImgIndex + 1} of ${arr.length}`;
-                title.textContent = `Project #${currentLightboxCardId} Proof Screenshot`;
+                title.textContent = `Project Proof Screenshot`;
             }
         }
 
