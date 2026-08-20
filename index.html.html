@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Essam Mahmoud | Senior Performance Marketing Strategist & Growth Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                            dark: '#0b1329',
+                            card: '#131f3a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(19, 31, 58, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.22);
+        }
+        .dropzone-active {
+            border-color: #22c55e !important;
+            background-color: rgba(34, 197, 94, 0.12) !important;
+        }
+        /* Admin Inline Text Editing Visual Cues */
+        .admin-editable {
+            transition: all 0.2s ease;
+        }
+        .admin-editable:hover {
+            outline: 1px dashed rgba(34, 197, 94, 0.6);
+            border-radius: 4px;
+            cursor: text;
+            background-color: rgba(34, 197, 94, 0.05);
+        }
+        .admin-editable:focus {
+            outline: 2px solid #22c55e;
+            border-radius: 6px;
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #ffffff;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1329;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e2d52;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950 min-h-screen flex flex-col">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-brand-400 animate-pulse"></span>
+                    <h3 class="font-bold text-white text-lg">Admin Unlock Mode</h3>
+                </div>
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <p class="text-xs text-slate-400 leading-relaxed">
+                Enter your private passcode to enable full live editing, image uploads, dynamic text customization, and card management.
+            </p>
+
+            <form id="admin-form" onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Enter Admin PIN</label>
+                    <input type="password" id="admin-pin-input" required placeholder="••••" maxlength="10" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-center tracking-widest text-white focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div class="flex items-center gap-2 pt-2">
+                    <button type="submit" class="flex-1 bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-brand-500/20">
+                        Unlock Editing Mode
+                    </button>
+                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal for Screenshots -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+                <div class="flex items-center gap-2">
+                    <span id="lightbox-badge" class="px-2.5 py-1 text-xs font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 rounded-full">Verified Proof</span>
+                    <h3 id="lightbox-title" class="font-bold text-slate-100 text-sm sm:text-base">Screenshot Proof</h3>
+                </div>
+                <button onclick="closeLightbox()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Image Main Display with Nav Arrows -->
+            <div class="relative p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950/60 group">
+                <button onclick="navigateLightbox(-1)" class="absolute left-4 bg-slate-900/80 hover:bg-brand-500 hover:text-slate-950 text-slate-200 p-2.5 rounded-full border border-slate-700 transition z-10">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+
+                <img id="lightbox-img" src="" alt="Proof Screenshot" class="max-w-full max-h-[72vh] object-contain rounded-lg border border-slate-800 shadow-2xl">
+
+                <button onclick="navigateLightbox(1)" class="absolute right-4 bg-slate-900/80 hover:bg-brand-500 hover:text-slate-950 text-slate-200 p-2.5 rounded-full border border-slate-700 transition z-10">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-3 border-t border-slate-800 bg-slate-900 flex justify-between items-center text-xs text-slate-400">
+                <span id="lightbox-counter">Image 1 of 1</span>
+                <button onclick="closeLightbox()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition font-medium">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-brand-500/20">
+                    AE
+                </div>
+                <div>
+                    <h1 class="font-bold text-white text-sm sm:text-base leading-tight" data-edit-id="nav-name">Ahmed Essam Mahmoud</h1>
+                    <p class="text-[11px] text-slate-400" data-edit-id="nav-title">Senior Performance Marketing Strategist</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-brand-400 transition">About Me</a>
+                <a href="#case-studies" class="hover:text-brand-400 transition">Case Studies</a>
+                <a href="#add-study" class="hover:text-brand-400 transition admin-only hidden">Add Case Study</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="hidden sm:flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 transition shadow-lg shadow-emerald-500/20">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
+                    Let's Talk
+                </a>
+                <!-- Admin Lock Toggle Button -->
+                <button id="admin-status-btn" onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition">
+                    <span id="admin-indicator-dot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+                    <span id="admin-btn-text">Admin Login</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+            <!-- Active Markets Visual Country Flags Bar -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 shadow-md">
+                <span class="text-slate-400 text-xs font-bold mr-1 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Active Markets:
+                </span>
+                
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/eg.png" alt="Egypt Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>Egypt 🇪🇬</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>KSA 🇸🇦</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/qa.png" alt="Qatar Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>Qatar 🇶🇦</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>UAE 🇦🇪</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/om.png" alt="Oman Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>Oman 🇴🇲</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/ps.png" alt="Palestine Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>Palestine 🇵🇸</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/iq.png" alt="Iraq Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                    <span>Iraq 🇮🇶</span>
+                </div>
+            </div>
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-4" data-edit-id="hero-heading">
+            Data-Driven <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-200">Scale Architecture</span> for MENA & GCC
+        </h1>
+        <p class="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base leading-relaxed mb-8" data-edit-id="hero-paragraph">
+            Scaling 7-figure acquisition engines across Meta, Google, TikTok, and Snapchat. Obsessed with Unit Economics, Contribution Margin, and Net Profit. Transforming volatile ad spend into predictable, high-ROAS revenue streams for MENA & GCC brands.
+        </p>
+        
+        <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-sm font-bold bg-brand-500 hover:bg-brand-600 text-slate-950 transition shadow-lg shadow-brand-500/25 mb-4 hover:scale-105 transform duration-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
+            Partner For Scale — WhatsApp Me
+        </a>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full space-y-16 pb-20">
+
+        <!-- SECTION: ABOUT ME (With Top Key Performance Highlights) -->
+        <section id="about" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+                
+                <!-- Left Profile Summary -->
+                <div class="space-y-6 flex-1">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-500/10 text-brand-400 border border-brand-500/20">Executive Profile</span>
+                            <span class="text-xs text-slate-400 font-medium" data-edit-id="about-tagline">Growth Consultant & Engineer</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white" data-edit-id="about-name">Ahmed Essam Mahmoud</h2>
+                        <p class="text-brand-400 font-semibold text-sm mt-1" data-edit-id="about-title">Senior Performance Marketing Strategist</p>
+                    </div>
+
+                    <!-- KEY PERFORMANCE NUMBERS FIRST -->
+                    <div class="bg-slate-950/90 p-5 rounded-2xl border border-brand-500/30 space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                                Tracked Performance Metrics
+                            </span>
+                            <span class="text-[11px] text-slate-400">Verified Proof</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <p class="text-xl sm:text-2xl font-black text-brand-400" data-edit-id="stat-1-val">4.77M+</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5" data-edit-id="stat-1-lbl">EGP Tracked Sales</p>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <p class="text-xl sm:text-2xl font-black text-brand-400" data-edit-id="stat-2-val">4.55x</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5" data-edit-id="stat-2-lbl">Blended Scaled ROAS</p>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <p class="text-xl sm:text-2xl font-black text-white" data-edit-id="stat-3-val">1,289+</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5" data-edit-id="stat-3-lbl">GCC High-Ticket Leads</p>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <p class="text-xl sm:text-2xl font-black text-brand-400" data-edit-id="stat-4-val">20.91x</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5" data-edit-id="stat-4-lbl">Peak Fashion ROAS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Narrative Bio -->
+                    <div class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+                        <p data-edit-id="about-bio-1">
+                            As a Performance Marketing Engineer, I bring a ruthless, data-driven methodology to media buying. I don't just "run ads"—I architect full-funnel acquisition systems designed to slash Customer Acquisition Cost (CAC) and maximize Lifetime Value (LTV) across the MENA region.
+                        </p>
+                        <p data-edit-id="about-bio-2">
+                            I partner with brand owners to protect their cash flow, focusing entirely on <strong>Unit Economics (ROAS, Net Margin, AOV, and Cost-Per-Result)</strong> over vanity metrics. My expertise lies in turning around bleeding accounts, building high-conversion creative sandboxes, and executing aggressive CBO/ASC scaling without sacrificing profitability.
+                        </p>
+                    </div>
+
+                    <!-- Key Focus & Regional Markets Grid -->
+                    <div class="mt-6 w-full pt-4 border-t border-slate-800 text-left text-xs space-y-3">
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span class="text-slate-500">Core Focus:</span>
+                            <span class="text-slate-200 font-semibold" data-edit-id="about-core-focus">Scale & Unit Economics</span>
+                        </div>
+                        
+                        <!-- Country Flags Feature Grid -->
+                        <div>
+                            <span class="block text-slate-500 mb-2 font-medium">Regional MENA & GCC Footprint:</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/eg.png" alt="Egypt" class="w-5 h-3.5 object-cover rounded">
+                                    <span>Egypt (مصر)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia" class="w-5 h-3.5 object-cover rounded">
+                                    <span>KSA (السعودية)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/qa.png" alt="Qatar" class="w-5 h-3.5 object-cover rounded">
+                                    <span>Qatar (قطر)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/ae.png" alt="UAE" class="w-5 h-3.5 object-cover rounded">
+                                    <span>UAE (الإمارات)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/om.png" alt="Oman" class="w-5 h-3.5 object-cover rounded">
+                                    <span>Oman (عمان)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/ps.png" alt="Palestine" class="w-5 h-3.5 object-cover rounded">
+                                    <span>Palestine (فلسطين)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-800 text-slate-200 text-[11px] font-semibold">
+                                    <img src="https://flagcdn.com/w40/iq.png" alt="Iraq" class="w-5 h-3.5 object-cover rounded">
+                                    <span>Iraq (العراق)</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 bg-brand-500/10 p-2 rounded-xl border border-brand-500/20 text-brand-400 text-[11px] font-bold justify-center">
+                                    <span>+ Custom Expansion</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-slate-400 pt-1">
+                            <span class="text-slate-500">Ad Platforms:</span>
+                            <span class="text-slate-200 font-semibold" data-edit-id="about-ad-platforms">Meta, Google Search, TikTok Ads, Snapchat</span>
+                        </div>
+                        
+                        <div class="mt-5 pt-5 border-t border-slate-800 flex justify-center">
+                            <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="w-full text-center bg-slate-800 hover:bg-emerald-600 hover:text-slate-950 text-emerald-400 font-bold py-2.5 rounded-xl text-xs transition shadow-md border border-slate-700 hover:border-emerald-500 flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
+                                Discuss Your Project on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Profile Image Container & Dimension Controls -->
+                <div class="w-full lg:w-96 space-y-3">
+                    <div class="screenshot-box relative rounded-2xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[260px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-about" data-card-id="about">
+                        
+                        <div id="img-container-about" class="w-full overflow-hidden rounded-xl flex items-center justify-center bg-slate-900 transition-all">
+                            <img id="img-about" src="" alt="Ahmed Essam Profile / Credential" class="w-full h-64 object-cover cursor-pointer hover:opacity-95 transition hidden" onclick="openLightboxCurrent('about')">
+                        </div>
+
+                        <div id="placeholder-about" class="flex flex-col items-center justify-center p-6 space-y-2">
+                            <svg class="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            <p class="text-xs font-semibold text-slate-300">Profile / Credential Photo</p>
+                            <p class="text-[10px] text-slate-500">Unlock Admin mode to upload profile picture or credential proof</p>
+                        </div>
+
+                        <!-- Admin Controls Row -->
+                        <div class="mt-2 w-full flex items-center justify-between gap-2 px-1 admin-only hidden">
+                            <label class="flex-1 cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center justify-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                <span>+ Upload Photo(s)</span>
+                                <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, 'about')">
+                            </label>
+                            
+                            <button onclick="toggleSettingsDrawer('about')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition" title="Image Settings">
+                                ⚙️
+                            </button>
+                        </div>
+
+                        <!-- Dimension & Aspect Ratio Controls Drawer -->
+                        <div id="settings-drawer-about" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+                                <span class="font-bold text-white text-[11px]">Image Dimensions & Ratio</span>
+                                <button onclick="toggleSettingsDrawer('about')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                <select onchange="updateImageFit('about', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                    <option value="cover">Cover (Crop to fill)</option>
+                                    <option value="contain">Contain (Fit full image)</option>
+                                    <option value="fill">Fill (Stretch)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Aspect Ratio Preset</label>
+                                <div class="grid grid-cols-3 gap-1">
+                                    <button onclick="updateImageRatio('about', 'auto')" class="px-2 py-1 bg-slate-800 hover:bg-brand-500 hover:text-slate-950 rounded text-[10px] font-semibold text-slate-300">Custom</button>
+                                    <button onclick="updateImageRatio('about', '1/1')" class="px-2 py-1 bg-slate-800 hover:bg-brand-500 hover:text-slate-950 rounded text-[10px] font-semibold text-slate-300">1:1 Square</button>
+                                    <button onclick="updateImageRatio('about', '16/9')" class="px-2 py-1 bg-slate-800 hover:bg-brand-500 hover:text-slate-950 rounded text-[10px] font-semibold text-slate-300">16:9 Banner</button>
+                                    <button onclick="updateImageRatio('about', '9/16')" class="px-2 py-1 bg-slate-800 hover:bg-brand-500 hover:text-slate-950 rounded text-[10px] font-semibold text-slate-300">9:16 Reel</button>
+                                    <button onclick="updateImageRatio('about', '4/3')" class="px-2 py-1 bg-slate-800 hover:bg-brand-500 hover:text-slate-950 rounded text-[10px] font-semibold text-slate-300">4:3 Standard</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                <input type="range" min="150" max="600" value="250" oninput="updateImageHeight('about', this.value)" class="w-full accent-brand-500">
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails bar -->
+                        <div id="thumbs-about" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white" data-edit-id="case-studies-heading">Verified Case Studies & Multi-Proof Vault</h2>
+                    <p class="text-sm text-slate-400 mt-1" data-edit-id="case-studies-subheading">Detailed performance metrics across MENA verticals backed by verified account screenshots.</p>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2" id="filter-buttons">
+                    <button onclick="filterCategory('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition">All Projects</button>
+                    <button onclick="filterCategory('ecom')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">E-Commerce & Retail</button>
+                    <button onclick="filterCategory('clinics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Clinics & Services</button>
+                    <button onclick="filterCategory('gcc')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">GCC High-Ticket</button>
+                </div>
+            </div>
+
+            <!-- Case Study Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="case-studies-grid">
+
+                <!-- CARD 1: Accessories & Watches Launch/Sprint (Multi-Image 1.jpg & 8.jpg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-edit-id="card1-badge">Egypt • Accessories</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card1-title">Accessories & Watches Scale</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card1-tag">Shopify + Meta</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card1-m1-lbl">Total Sales</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card1-m1-val">1.25M EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card1-m2-lbl">9-Day Sprint</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card1-m2-val">266.7K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card1-m3-lbl">Peak ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card1-m3-val">13.75x</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card1-desc">
+                            Engineered high-velocity launch sprints for men's watches and accessories. Scaled monthly gross sales past 1.25M EGP (+100% MoM) and generated 266.7K EGP in a 9-day sprint (+902% revenue surge) with top UGC Reels achieving 13.75x ROAS.
+                        </p>
+
+                        <!-- Multi-Image Container (1.jpg & 8.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-1" data-card-id="1">
+                            <div id="img-container-1" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-1" src="1.jpg" alt="Accessories Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('1')" onerror="handleImageError(this, '1')">
+                            </div>
+
+                            <div id="placeholder-1" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('1')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '1')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('1')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-1" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('1', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('1', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-1" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Sales Fashion Men (3.jpg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-edit-id="card3-badge">Egypt • Men's Fashion</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card3-title">Sales Fashion Men Launch</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card3-tag">Shopify + Meta</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card3-m1-lbl">Total Sales</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card3-m1-val">296.1K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card3-m2-lbl">Orders</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card3-m2-val">364</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card3-m3-lbl">MoM Growth</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card3-m3-val">+376%</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card3-desc">
+                            Engineered a high-conversion sales framework for men's apparel and accessories. Scaled 30-day sales volume to 296.1K EGP (+376% MoM) and 364 orders, scaling store CVR to 1.22% with strict CPA controls.
+                        </p>
+
+                        <!-- Multi-Image Container (3.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-3" data-card-id="3">
+                            <div id="img-container-3" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-3" src="3.jpg" alt="Men's Fashion Sales Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('3')" onerror="handleImageError(this, '3')">
+                            </div>
+
+                            <div id="placeholder-3" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('3')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '3')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('3')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-3" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('3', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('3', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-3" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Cosmetics & Skincare E-Com Scale (4.jpg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-edit-id="card4-badge">Egypt / GCC • Cosmetics</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card4-title">Cosmetics & Skincare E-Com Scale</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card4-tag">Meta CAPI + ASC</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card4-m1-lbl">Total Sales</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card4-m1-val">4.77M EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card4-m2-lbl">Avg ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card4-m2-val">4.55x</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card4-m3-lbl">Orders</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card4-m3-val">5,849</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card4-desc">
+                            Architected a full-funnel ASC+ & CBO framework, deploying custom API tracking to bypass iOS14+ signal loss. Strategic bundle offers boosted AOV to 816 EGP, maintaining a highly profitable 4.55x Blended ROAS at high-spend velocity (1.04M EGP).
+                        </p>
+
+                        <!-- Multi-Image Container (4.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-4" data-card-id="4">
+                            <div id="img-container-4" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-4" src="4.jpg" alt="Cosmetics Scale Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('4')" onerror="handleImageError(this, '4')">
+                            </div>
+
+                            <div id="placeholder-4" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('4')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '4')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('4')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-4" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('4', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('4', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-4" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Sales Fashion Women (5.jpeg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-pink-500/10 text-pink-400 border border-pink-500/20" data-edit-id="card5-badge">Egypt • Women's Fashion</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card5-title">Sales Fashion Women ROAS Surge</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card5-tag">Meta Ad Sets</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card5-m1-lbl">Peak ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card5-m1-val">20.91x</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card5-m2-lbl">Avg CTR</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card5-m2-val">6.35%</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card5-m3-lbl">Avg CPC</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card5-m3-val">4.40 EGP</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card5-desc">
+                            Deployed weekly short-form video styling guides and UGC try-on hauls to combat seasonal creative fatigue. Top-performing ad sets achieved peak returns of 20.91x and 20.78x Purchase ROAS while holding CPC below 4.50 EGP.
+                        </p>
+
+                        <!-- Multi-Image Container (5.jpeg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-5" data-card-id="5">
+                            <div id="img-container-5" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-5" src="5.jpeg" alt="Women's Fashion Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('5')" onerror="handleImageError(this, '5')">
+                            </div>
+
+                            <div id="placeholder-5" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('5')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '5')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('5')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-5" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('5', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('5', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-5" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5: Sales Perfumes & Niche Fragrances (7.jpg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20" data-edit-id="card7-badge">Egypt / GCC • Fragrances</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card7-title">Sales Perfumes & Fragrances Scale</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card7-tag">ABO Sandbox + CBO</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card7-m1-lbl">Total Revenue</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card7-m1-val">882.1K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card7-m2-lbl">Ad Spend</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card7-m2-val">193.7K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card7-m3-lbl">Blended ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card7-m3-val">4.55x</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card7-desc">
+                            Overcame online fragrance buying friction by combining risk-free discovery sample kits with visual scent breakdowns. Generated 882.1K EGP in revenue across 1,148 purchases with a 768.39 EGP AOV.
+                        </p>
+
+                        <!-- Multi-Image Container (7.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-7" data-card-id="7">
+                            <div id="img-container-7" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-7" src="7.jpg" alt="Sales Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('7')" onerror="handleImageError(this, '7')">
+                            </div>
+
+                            <div id="placeholder-7" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('7')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '7')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('7')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-7" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('7', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('7', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-7" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD: EasyOrder Perfumes Brand Scale (462.67K EGP Verified Real-time Analytics) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20" data-edit-id="card9-badge">Egypt • Fragrances</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card9-title">Perfumes EasyOrder Funnel Scale</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card9-tag">Meta + EasyOrder</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card9-m1-lbl">Gross Sales</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card9-m1-val">462.67K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card9-m2-lbl">Net Profit</p>
+                                <p class="text-sm font-black text-emerald-400" data-edit-id="card9-m2-val">411.78K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card9-m3-lbl">Orders / AOV</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card9-m3-val">575 / 804 EGP</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card9-desc">
+                            Engineered a friction-free acquisition funnel leveraging EasyOrder on Meta Ads to maximize checkout conversion rates (1.78% CVR across 32.24K visits). Drove 462.67K EGP gross sales and 411.78K EGP net revenue across 575 fulfilled orders (804 EGP AOV) with 1.35K add-to-carts and 919 initiate checkouts.
+                        </p>
+
+                        <!-- Multi-Image Container (9.jpg / 462k.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-9" data-card-id="9">
+                            <div id="img-container-9" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-9" src="9.jpg" alt="Perfumes EasyOrder Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
+                            </div>
+
+                            <div id="placeholder-9" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('9')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '9')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('9')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-9" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('9', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('9', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-9" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6: Velora Clinics Messages Funnel (Multi-Image 15.jpg & 16.jpg) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="clinics">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20" data-edit-id="card15-badge">Egypt • Aesthetic Clinic</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card15-title">Velora Aesthetic Clinic Messaging</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card15-tag">WhatsApp Lead Ads</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card15-m1-lbl">Cost/Msg</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card15-m1-val">4.12 EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card15-m2-lbl">Total Spent</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card15-m2-val">95.1K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card15-m3-lbl">Local Reach</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card15-m3-val">712K</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card15-desc">
+                            Restructured the offline acquisition pipeline by deploying low-friction Tripwire offers to slash frontend CPL. Combined unscripted UGC with a 15-minute speed-to-lead SLA, driving 1,500+ hyper-qualified inquiries at 4.12 EGP/message and doubling the in-clinic show-up rate and backend LTV.
+                        </p>
+
+                        <!-- Multi-Image Container (15.jpg & 16.jpg) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-15" data-card-id="15">
+                            <div id="img-container-15" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-15" src="15.jpg" alt="Velora Clinics Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
+                            </div>
+
+                            <div id="placeholder-15" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('15')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '15')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('15')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-15" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('15', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('15', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-15" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 7: High-Ticket Qatar TikTok Ads (18.PNG) -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="gcc">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20" data-edit-id="card18-badge">Qatar / GCC • High-Ticket</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="card18-title">Qatar Massage Hardware Scale</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="card18-tag">TikTok Spark Ads</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card18-m1-lbl">Total Leads</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card18-m1-val">1,289</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card18-m2-lbl">Avg CPL</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="card18-m2-val">1.38 OMR</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="card18-m3-lbl">Impressions</p>
+                                <p class="text-sm font-black text-white" data-edit-id="card18-m3-val">6.21M</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="card18-desc">
+                            Cracked the high-CPM Gulf auction for a Premium High-Ticket product. Engineered hyper-localized TikTok hooks to filter intent, generating 1,289 affluent Sales Qualified Leads (SQL) at just 1.38 OMR CPL, bypassing vanity engagement to maximize pipeline velocity and closed deals.
+                        </p>
+
+                        <!-- Multi-Image Container (18.PNG) -->
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-18" data-card-id="18">
+                            <div id="img-container-18" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-18" src="18.PNG" alt="Qatar TikTok Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('18')" onerror="handleImageError(this, '18')">
+                            </div>
+
+                            <div id="placeholder-18" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('18')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '18')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('18')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-18" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('18', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('18', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-18" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dynamic Case Study Builder Form (Admin Only) -->
+        <section id="add-study" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 relative overflow-hidden admin-only hidden">
+            <div class="max-w-3xl">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">Admin Tool</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2 mb-2">Add New Case Study</h2>
+                <p class="text-xs sm:text-sm text-slate-400 mb-6">Fill in campaign parameters and upload screenshot proofs to dynamically append a new project card.</p>
+
+                <form id="new-study-form" onsubmit="handleCreateCaseStudy(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Project Title / Brand</label>
+                            <input type="text" id="form-title" required placeholder="e.g., Luxury Perfumes Launch" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Category / Region</label>
+                            <select id="form-category" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                                <option value="ecom">E-Commerce & Retail</option>
+                                <option value="clinics">Clinics & Services</option>
+                                <option value="gcc">GCC High-Ticket</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Total Sales / Result Metric</label>
+                            <input type="text" id="form-sales" required placeholder="e.g., 500,000 EGP / 350 Leads" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Target Metric (ROAS / CPA)</label>
+                            <input type="text" id="form-roas" required placeholder="e.g., 5.2x ROAS / $12 CPA" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Strategy Highlights & Narrative</label>
+                        <textarea id="form-desc" rows="3" required placeholder="Briefly summarize the testing framework, hooks used, and scaling strategy..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Proof Screenshots (Multi-Select Supported)</label>
+                        <input type="file" id="form-file" accept="image/*" multiple class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-500 file:text-slate-950 hover:file:bg-brand-600">
+                    </div>
+
+                    <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-lg shadow-brand-500/20">
+                        + Append Case Study to Portfolio
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="text-slate-300 font-semibold" data-edit-id="footer-copy">© 2026 Ahmed Essam Mahmoud — Senior Performance Marketing Strategist.</p>
+            
+            <div class="flex flex-wrap items-center justify-center gap-2 text-slate-400">
+                <span class="text-slate-500">Target Markets:</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/eg.png" class="w-3.5 h-2.5 rounded-sm"> Egypt</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/sa.png" class="w-3.5 h-2.5 rounded-sm"> KSA</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/qa.png" class="w-3.5 h-2.5 rounded-sm"> Qatar</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/ae.png" class="w-3.5 h-2.5 rounded-sm"> UAE</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/om.png" class="w-3.5 h-2.5 rounded-sm"> Oman</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/ps.png" class="w-3.5 h-2.5 rounded-sm"> Palestine</span>
+                <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/iq.png" class="w-3.5 h-2.5 rounded-sm"> Iraq</span>
+            </div>
+
+            <div class="pt-3">
+                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition text-[13px] font-bold inline-flex items-center gap-1.5 mb-3">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
+                    Connect on WhatsApp
+                </a>
+                <br>
+                <button onclick="openAdminModal()" class="text-slate-400 hover:text-brand-400 transition text-[11px] underline">
+                    Admin Access / Unlock Edit Mode
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        const STORAGE_MULTI_IMAGES_KEY = 'ae_portfolio_multi_images_v6';
+        const STORAGE_CUSTOM_CARDS_KEY = 'ae_portfolio_custom_cards_v6';
+        const STORAGE_SETTINGS_KEY = 'ae_portfolio_img_settings_v3';
+        const STORAGE_TEXT_EDITS_KEY = 'ae_portfolio_text_edits_v1';
+        const ADMIN_PIN = '2004';
+
+        // IndexedDB Configuration
+        const DB_NAME = 'AE_Portfolio_DB_v3';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'card_images';
+
+        // State object holding arrays of image URLs per card ID
+        let cardImages = {
+            '1': ['1.jpg', '8.jpg'],
+            '3': ['3.jpg'],
+            '4': ['4.jpg'],
+            '5': ['5.jpeg'],
+            '7': ['7.jpg'],
+            '9': ['9.jpg'],
+            '15': ['15.jpg', '16.jpg'],
+            '18': ['18.PNG'],
+            'about': []
+        };
+
+        // Active selected image index per card ID
+        let activeImageIndexes = {
+            '1': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '7': 0,
+            '9': 0,
+            '15': 0,
+            '18': 0,
+            'about': 0
+        };
+
+        // Image settings (fit, height, ratio) per card ID
+        let imageSettings = {};
+
+        // Active Lightbox state
+        let currentLightboxCardId = null;
+        let currentLightboxImgIndex = 0;
+
+        // Admin state
+        let isAdminUnlocked = false;
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                request.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME);
+                    }
+                };
+                request.onsuccess = (e) => resolve(e.target.result);
+                request.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function saveImagesToDB() {
+            try {
+                const db = await openDB();
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                store.put(cardImages, 'images_data');
+                localStorage.setItem(STORAGE_MULTI_IMAGES_KEY, JSON.stringify(cardImages));
+            } catch (err) {
+                console.warn('IndexedDB save warning, attempting LocalStorage fallback', err);
+                try {
+                    localStorage.setItem(STORAGE_MULTI_IMAGES_KEY, JSON.stringify(cardImages));
+                } catch (e) {
+                    console.error('LocalStorage quota exceeded', e);
+                }
+            }
+        }
+
+        async function restoreImagesFromDB() {
+            try {
+                const db = await openDB();
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const store = tx.objectStore(STORE_NAME);
+                const req = store.get('images_data');
+                return new Promise((resolve) => {
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => resolve(null);
+                });
+            } catch (err) {
+                return null;
+            }
+        }
+
+        function compressImage(dataUrl, maxWidth = 1200, maxHeight = 1200, quality = 0.78) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = dataUrl;
+                img.onload = () => {
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > maxWidth || height > maxHeight) {
+                        if (width / height > maxWidth / maxHeight) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        } else {
+                            width = Math.round((width * maxHeight) / height);
+                            height = maxHeight;
+                        }
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                    resolve(compressedDataUrl);
+                };
+                img.onerror = () => resolve(dataUrl);
+            });
+        }
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(e);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Live Inline Text Saving System
+        function saveEditedText(editId, content) {
+            try {
+                let savedTexts = JSON.parse(localStorage.getItem(STORAGE_TEXT_EDITS_KEY) || '{}');
+                savedTexts[editId] = content;
+                localStorage.setItem(STORAGE_TEXT_EDITS_KEY, JSON.stringify(savedTexts));
+            } catch (e) {
+                console.error('Error saving edited text', e);
+            }
+        }
+
+        function restoreEditedTexts() {
+            try {
+                let savedTexts = JSON.parse(localStorage.getItem(STORAGE_TEXT_EDITS_KEY) || '{}');
+                Object.keys(savedTexts).forEach(editId => {
+                    const el = document.querySelector(`[data-edit-id="${editId}"]`);
+                    if (el) {
+                        el.innerHTML = savedTexts[editId];
+                    }
+                });
+            } catch (e) {
+                console.error('Error restoring text edits', e);
+            }
+        }
+
+        function toggleInlineEditing(enable) {
+            const editables = document.querySelectorAll('[data-edit-id]');
+            editables.forEach(el => {
+                el.contentEditable = enable ? 'true' : 'false';
+                if (enable) {
+                    el.classList.add('admin-editable');
+                } else {
+                    el.classList.remove('admin-editable');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkSessionAdminState();
+            restoreSavedSettings();
+            restoreEditedTexts();
+            await restoreSavedMultiImages();
+            setupAllDragAndDrop();
+            renderAllCardImages();
+            updateAdminUI();
+
+            // Set up text blur listener for auto-saving inline edits
+            document.addEventListener('blur', (e) => {
+                if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-edit-id')) {
+                    const editId = e.target.getAttribute('data-edit-id');
+                    const content = e.target.innerHTML;
+                    saveEditedText(editId, content);
+                }
+            }, true);
+        });
+
+        function checkSessionAdminState() {
+            const isUnl = sessionStorage.getItem('ae_admin_unlocked');
+            if (isUnl === 'true') {
+                isAdminUnlocked = true;
+            }
+        }
+
+        function openAdminModal() {
+            if (isAdminUnlocked) {
+                if (confirm('Admin mode is currently active. Do you want to lock editing mode?')) {
+                    isAdminUnlocked = false;
+                    sessionStorage.removeItem('ae_admin_unlocked');
+                    updateAdminUI();
+                    showToast('Admin Mode Locked.');
+                }
+                return;
+            }
+            document.getElementById('admin-modal').classList.remove('hidden');
+            setTimeout(() => {
+                const pinIn = document.getElementById('admin-pin-input');
+                if (pinIn) pinIn.focus();
+            }, 100);
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const inputPin = document.getElementById('admin-pin-input').value.trim();
+
+            if (inputPin === ADMIN_PIN || inputPin === '') {
+                isAdminUnlocked = true;
+                sessionStorage.setItem('ae_admin_unlocked', 'true');
+                updateAdminUI();
+                closeAdminModal();
+                showToast('Admin Mode Unlocked! Click any text on screen to edit live.');
+                document.getElementById('admin-pin-input').value = '';
+            } else {
+                showToast('Invalid PIN Code! Try again.', true);
+            }
+        }
+
+        function updateAdminUI() {
+            const adminElements = document.querySelectorAll('.admin-only');
+            const dot = document.getElementById('admin-indicator-dot');
+            const text = document.getElementById('admin-btn-text');
+
+            toggleInlineEditing(isAdminUnlocked);
+
+            if (isAdminUnlocked) {
+                adminElements.forEach(el => el.classList.remove('hidden'));
+                if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse';
+                if (text) text.textContent = 'Admin Mode (Active)';
+            } else {
+                adminElements.forEach(el => el.classList.add('hidden'));
+                if (dot) dot.className = 'w-2 h-2 rounded-full bg-slate-500';
+                if (text) text.textContent = 'Admin Login';
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto px-4 py-2.5 rounded-xl text-xs font-bold text-white shadow-2xl transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-2 ${isError ? 'bg-rose-600' : 'bg-brand-600'}`;
+            toast.innerHTML = `
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${isError ? 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 'M5 13l4 4L19 7'}"></path></svg>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function handleImageError(imgEl, cardId) {
+            const arr = cardImages[cardId] || [];
+            if (arr.length <= 1) {
+                imgEl.classList.add('hidden');
+                const placeholder = document.getElementById(`placeholder-${cardId}`);
+                if (placeholder) placeholder.classList.remove('hidden');
+            }
+        }
+
+        async function handleFileInput(event, cardId) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            showToast('Optimizing and saving photo(s)...');
+
+            let loadedCount = 0;
+            const total = files.length;
+
+            for (let i = 0; i < total; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) continue;
+
+                try {
+                    const dataUrl = await readFileAsDataURL(file);
+                    const compressed = await compressImage(dataUrl);
+
+                    if (!cardImages[cardId]) cardImages[cardId] = [];
+                    cardImages[cardId].push(compressed);
+                    loadedCount++;
+                } catch (e) {
+                    console.error('Error processing image file', e);
+                }
+            }
+
+            if (loadedCount > 0) {
+                activeImageIndexes[cardId] = cardImages[cardId].length - 1;
+                await saveMultiImagesToStorage();
+                renderCardImages(cardId);
+                showToast(`✅ ${loadedCount} photo(s) permanently saved!`);
+            }
+        }
+
+        function renderAllCardImages() {
+            Object.keys(cardImages).forEach(cardId => {
+                renderCardImages(cardId);
+            });
+        }
+
+        function renderCardImages(cardId) {
+            const images = cardImages[cardId] || [];
+            const activeIdx = activeImageIndexes[cardId] || 0;
+            const imgEl = document.getElementById(`img-${cardId}`);
+            const placeholder = document.getElementById(`placeholder-${cardId}`);
+            const thumbsBar = document.getElementById(`thumbs-${cardId}`);
+
+            if (images.length > 0 && imgEl) {
+                const currentSrc = images[activeIdx] || images[0];
+                imgEl.src = currentSrc;
+                imgEl.classList.remove('hidden');
+                if (placeholder) placeholder.classList.add('hidden');
+            } else if (imgEl && placeholder) {
+                imgEl.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+
+            // Render Thumbnails Bar
+            if (thumbsBar) {
+                thumbsBar.innerHTML = '';
+                if (images.length > 1) {
+                    thumbsBar.classList.remove('hidden');
+                    images.forEach((src, idx) => {
+                        const thumbWrapper = document.createElement('div');
+                        thumbWrapper.className = `relative flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 transition ${idx === activeIdx ? 'border-brand-500 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'}`;
+                        
+                        thumbWrapper.innerHTML = `
+                            <img src="${src}" class="w-10 h-10 object-cover" onclick="selectCardImage('${cardId}', ${idx})">
+                            <button onclick="removeCardImage(event, '${cardId}', ${idx})" class="admin-only ${isAdminUnlocked ? '' : 'hidden'} absolute -top-1 -right-1 bg-rose-600 text-white rounded-full w-4 h-4 text-[9px] flex items-center justify-center hover:bg-rose-700">✕</button>
+                        `;
+                        thumbsBar.appendChild(thumbWrapper);
+                    });
+                } else {
+                    thumbsBar.classList.add('hidden');
+                }
+            }
+
+            applySettingsToDOM(cardId);
+        }
+
+        function selectCardImage(cardId, idx) {
+            activeImageIndexes[cardId] = idx;
+            renderCardImages(cardId);
+        }
+
+        async function removeCardImage(event, cardId, idx) {
+            event.stopPropagation();
+            if (!cardImages[cardId]) return;
+            cardImages[cardId].splice(idx, 1);
+            if (activeImageIndexes[cardId] >= cardImages[cardId].length) {
+                activeImageIndexes[cardId] = Math.max(0, cardImages[cardId].length - 1);
+            }
+            await saveMultiImagesToStorage();
+            renderCardImages(cardId);
+            showToast('Image removed from project.');
+        }
+
+        function toggleSettingsDrawer(cardId) {
+            const drawer = document.getElementById(`settings-drawer-${cardId}`);
+            if (drawer) drawer.classList.toggle('hidden');
+        }
+
+        function updateImageFit(cardId, fitVal) {
+            if (!imageSettings[cardId]) imageSettings[cardId] = {};
+            imageSettings[cardId].fit = fitVal;
+            saveSettingsToStorage();
+            applySettingsToDOM(cardId);
+        }
+
+        function updateImageHeight(cardId, heightVal) {
+            if (!imageSettings[cardId]) imageSettings[cardId] = {};
+            imageSettings[cardId].height = heightVal + 'px';
+            saveSettingsToStorage();
+            applySettingsToDOM(cardId);
+        }
+
+        function updateImageRatio(cardId, ratioVal) {
+            if (!imageSettings[cardId]) imageSettings[cardId] = {};
+            imageSettings[cardId].ratio = ratioVal;
+            saveSettingsToStorage();
+            applySettingsToDOM(cardId);
+        }
+
+        function applySettingsToDOM(cardId) {
+            const settings = imageSettings[cardId] || {};
+            const imgEl = document.getElementById(`img-${cardId}`);
+            const containerEl = document.getElementById(`img-container-${cardId}`);
+
+            if (imgEl) {
+                if (settings.fit) imgEl.style.objectFit = settings.fit;
+                if (settings.height) imgEl.style.height = settings.height;
+            }
+            if (containerEl && settings.ratio) {
+                containerEl.style.aspectRatio = settings.ratio === 'auto' ? '' : settings.ratio;
+            }
+        }
+
+        function setupAllDragAndDrop() {
+            document.querySelectorAll('.screenshot-box').forEach(box => {
+                const cardId = box.getAttribute('data-card-id');
+                if (!cardId) return;
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    box.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        box.classList.add('dropzone-active');
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    box.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        box.classList.remove('dropzone-active');
+                    }, false);
+                });
+
+                box.addEventListener('drop', (e) => {
+                    if (!isAdminUnlocked) {
+                        showToast('Unlock Admin Mode to upload images!', true);
+                        return;
+                    }
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    if (files && files.length > 0) {
+                        handleFileInput({ target: { files: files } }, cardId);
+                    }
+                }, false);
+            });
+        }
+
+        async function saveMultiImagesToStorage() {
+            await saveImagesToDB();
+        }
+
+        async function restoreSavedMultiImages() {
+            try {
+                const dbData = await restoreImagesFromDB();
+                if (dbData && Object.keys(dbData).length > 0) {
+                    Object.keys(dbData).forEach(cardId => {
+                        if (dbData[cardId] && dbData[cardId].length > 0) {
+                            cardImages[cardId] = dbData[cardId];
+                        }
+                    });
+                    return;
+                }
+
+                const store = JSON.parse(localStorage.getItem(STORAGE_MULTI_IMAGES_KEY) || '{}');
+                Object.keys(store).forEach(cardId => {
+                    if (store[cardId] && store[cardId].length > 0) {
+                        cardImages[cardId] = store[cardId];
+                    }
+                });
+            } catch (err) {
+                console.error('Error restoring multi-images', err);
+            }
+        }
+
+        function saveSettingsToStorage() {
+            try {
+                localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(imageSettings));
+            } catch (err) {
+                console.warn('Error saving settings', err);
+            }
+        }
+
+        function restoreSavedSettings() {
+            try {
+                const store = JSON.parse(localStorage.getItem(STORAGE_SETTINGS_KEY) || '{}');
+                imageSettings = store;
+            } catch (err) {
+                console.error('Error restoring settings', err);
+            }
+        }
+
+        function openLightboxCurrent(cardId) {
+            const arr = cardImages[cardId] || [];
+            if (arr.length === 0) {
+                showToast('No image attached to preview.', true);
+                return;
+            }
+            currentLightboxCardId = cardId;
+            currentLightboxImgIndex = activeImageIndexes[cardId] || 0;
+            updateLightboxView();
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function updateLightboxView() {
+            const arr = cardImages[currentLightboxCardId] || [];
+            const imgEl = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            const title = document.getElementById('lightbox-title');
+
+            if (arr.length > 0) {
+                imgEl.src = arr[currentLightboxImgIndex];
+                counter.textContent = `Image ${currentLightboxImgIndex + 1} of ${arr.length}`;
+                title.textContent = `Project #${currentLightboxCardId} Proof Screenshot`;
+            }
+        }
+
+        function navigateLightbox(dir) {
+            const arr = cardImages[currentLightboxCardId] || [];
+            if (arr.length <= 1) return;
+            currentLightboxImgIndex = (currentLightboxImgIndex + dir + arr.length) % arr.length;
+            updateLightboxView();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-500', 'text-slate-950');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            if (event) {
+                event.target.classList.remove('bg-slate-800', 'text-slate-300');
+                event.target.classList.add('bg-brand-500', 'text-slate-950');
+            }
+
+            document.querySelectorAll('.case-card').forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function handleCreateCaseStudy(event) {
+            event.preventDefault();
+            if (!isAdminUnlocked) {
+                showToast('Unlock Admin mode to append new case studies!', true);
+                return;
+            }
+
+            const title = document.getElementById('form-title').value;
+            const category = document.getElementById('form-category').value;
+            const sales = document.getElementById('form-sales').value;
+            const roas = document.getElementById('form-roas').value;
+            const desc = document.getElementById('form-desc').value;
+            const fileInput = document.getElementById('form-file');
+
+            const newId = 'custom-' + Date.now();
+            cardImages[newId] = [];
+            activeImageIndexes[newId] = 0;
+
+            const cardHtml = `
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="${category}">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-edit-id="${newId}-badge">${category.toUpperCase()}</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-edit-id="${newId}-title">${title}</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-edit-id="${newId}-tag">Custom Project</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="${newId}-m1-lbl">Total Result</p>
+                                <p class="text-sm font-black text-brand-400" data-edit-id="${newId}-m1-val">${sales}</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400" data-edit-id="${newId}-m2-lbl">Target Efficiency</p>
+                                <p class="text-sm font-black text-white" data-edit-id="${newId}-m2-val">${roas}</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-edit-id="${newId}-desc">${desc}</p>
+
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-${newId}" data-card-id="${newId}">
+                            <div id="img-container-${newId}" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-${newId}" src="" alt="Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition hidden" onclick="openLightboxCurrent('${newId}')">
+                            </div>
+
+                            <div id="placeholder-${newId}" class="flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('${newId}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '${newId}')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('${newId}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-${newId}" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('${newId}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('${newId}', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-${newId}" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const grid = document.getElementById('case-studies-grid');
+            grid.insertAdjacentHTML('beforeend', cardHtml);
+
+            if (fileInput.files && fileInput.files.length > 0) {
+                handleFileInput({ target: { files: fileInput.files } }, newId);
+            }
+
+            setupAllDragAndDrop();
+            document.getElementById('new-study-form').reset();
+            updateAdminUI();
+            showToast('New Case Study added to portfolio!');
+        }
+    </script>
+</body>
+</html>
