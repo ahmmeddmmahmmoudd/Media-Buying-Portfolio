@@ -405,6 +405,7 @@
                 </div>
                 
                 <div class="flex flex-wrap gap-2" id="filter-buttons">
+                    <button type="button" onclick="restoreDeletedCards()" class="admin-only hidden px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-amber-400 hover:bg-slate-700 border border-amber-500/30 transition">↺ Restore deleted</button>
                     <button onclick="filterCategory('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition">All Projects</button>
                     <button onclick="filterCategory('ecom')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">E-Commerce & Retail</button>
                     <button onclick="filterCategory('clinics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Clinics & Services</button>
@@ -779,13 +780,13 @@
                     </div>
                 </div>
 
-                <!-- CARD 6: Velora Clinics Messages (15.PNG & 16.PNG) -->
+                <!-- CARD 6: Clinics Messages (15.PNG & 16.PNG) -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="clinics">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
                             <div>
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20" data-editable="true" data-text-key="c6_tag">Egypt • Aesthetic Clinic</span>
-                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c6_title">Velora Aesthetic Clinic Messaging</h3>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c6_title">Aesthetic Clinic Messaging</h3>
                             </div>
                             <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="c6_platform">WhatsApp Lead Ads</span>
                         </div>
@@ -811,7 +812,7 @@
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-15" data-card-id="15">
                             <div id="img-container-15" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-15" src="15.PNG" alt="Velora Clinics Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
+                                <img id="img-15" src="15.PNG" alt="Clinics Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
                             </div>
 
                             <div id="placeholder-15" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -925,15 +926,15 @@
                     </div>
                 </div>
 
-                <!-- CARD 8: EasyOrder Perfumes (14.jpg) -->
+                <!-- CARD 8: Perfumes (14.jpg) -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
                             <div>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20" data-editable="true" data-text-key="c8_tag">Egypt • EasyOrder Fragrances</span>
-                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c8_title">Perfumes Brand EasyOrder Scale</h3>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20" data-editable="true" data-text-key="c8_tag">Egypt • Fragrances</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c8_title">Perfumes Brand Scale</h3>
                             </div>
-                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="c8_platform">Meta Ads + EasyOrder</span>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="c8_platform">Meta Ads + Native Checkout</span>
                         </div>
 
                         <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
@@ -952,12 +953,12 @@
                         </div>
 
                         <p class="text-xs text-slate-300 leading-relaxed flex-1" data-editable="true" data-text-key="c8_desc">
-                            Scaled an emerging perfume brand directly through EasyOrder checkout funnels. Achieved a solid 1.78% store conversion rate across 32.24K targeted visits with 1.35K add-to-carts and 919 initiate checkouts, unlocking high cash flow and net contribution margins.
+                            Scaled an emerging perfume brand directly through native checkout funnels. Achieved a solid 1.78% store conversion rate across 32.24K targeted visits with 1.35K add-to-carts and 919 initiate checkouts, unlocking high cash flow and net contribution margins.
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-9" data-card-id="9">
                             <div id="img-container-9" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-9" src="14.jpg" alt="EasyOrder Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
+                                <img id="img-9" src="14.jpg" alt="Perfumes Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
                             </div>
 
                             <div id="placeholder-9" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -999,13 +1000,13 @@
                 </div>
 
 
-                <!-- CARD 10: Minz 6x+ ROAS Campaign Portfolio -->
+                <!-- CARD 10: 6x+ ROAS Campaign Portfolio -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
                             <div>
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-editable="true" data-text-key="cminz6x_tag">Egypt • E-Commerce</span>
-                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="cminz6x_title">Minz — 6x+ ROAS Campaign Portfolio</h3>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="cminz6x_title">6x+ ROAS E-Commerce Campaign Portfolio</h3>
                             </div>
                             <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="cminz6x_platform">Meta Ads</span>
                         </div>
@@ -1031,7 +1032,7 @@
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-minz6x" data-card-id="minz6x">
                             <div id="img-container-minz6x" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-minz6x" src="minz-6x.png" alt="Minz Meta Ads Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('minz6x')" onerror="handleImageError(this, 'minz6x')">
+                                <img id="img-minz6x" src="minz-6x.png" alt="Meta Ads Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('minz6x')" onerror="handleImageError(this, 'minz6x')">
                             </div>
 
                             <div id="placeholder-minz6x" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -1072,13 +1073,13 @@
                     </div>
                 </div>
 
-                <!-- CARD 11: Skinoria 6x+ Catalogue & Sales -->
+                <!-- CARD 11: Skincare 6x+ Catalogue & Sales -->
                 <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
                     <div class="p-5 flex-1 flex flex-col space-y-4">
                         <div class="flex items-start justify-between gap-2">
                             <div>
                                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-editable="true" data-text-key="cskin6x_tag">Egypt • Skincare</span>
-                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="cskin6x_title">Skinoria — Catalogue & Sales 6x+</h3>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="cskin6x_title">Skincare Catalogue & Sales 6x+</h3>
                             </div>
                             <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="cskin6x_platform">Meta Ads</span>
                         </div>
@@ -1225,6 +1226,56 @@
         let currentLightboxImgIndex = 0;
         let isAdminUnlocked = false;
 
+
+        const STORAGE_DELETED_KEY = 'ae_portfolio_deleted_cards_v1';
+
+        function getCardKey(card) {
+            const k = card.querySelector('[data-text-key]');
+            return k ? k.getAttribute('data-text-key') : null;
+        }
+
+        function getDeletedCards() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_DELETED_KEY) || '[]'); } catch (e) { return []; }
+        }
+
+        function applyDeletedCards() {
+            const deleted = getDeletedCards();
+            if (!deleted.length) return;
+            document.querySelectorAll('.case-card').forEach(card => {
+                if (deleted.includes(getCardKey(card))) card.remove();
+            });
+        }
+
+        function injectDeleteButtons() {
+            document.querySelectorAll('.case-card').forEach(card => {
+                if (card.querySelector('.delete-card-btn')) return;
+                const row = document.createElement('div');
+                row.className = 'admin-only hidden px-5 pb-4';
+                row.innerHTML = '<button type="button" onclick="deleteCaseCard(this)" class="delete-card-btn w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 text-[11px] font-semibold py-1.5 rounded-lg border border-red-500/30 transition">🗑 Delete this case</button>';
+                card.appendChild(row);
+            });
+        }
+
+        function deleteCaseCard(btn) {
+            if (!isAdminUnlocked) return;
+            const card = btn.closest('.case-card');
+            const key = getCardKey(card);
+            const title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'this case';
+            if (!confirm('Delete "' + title + '"? You can bring deleted cases back with "Restore deleted".')) return;
+            if (key) {
+                const deleted = getDeletedCards();
+                if (!deleted.includes(key)) deleted.push(key);
+                localStorage.setItem(STORAGE_DELETED_KEY, JSON.stringify(deleted));
+            }
+            card.remove();
+            showToast('Case deleted.');
+        }
+
+        function restoreDeletedCards() {
+            localStorage.removeItem(STORAGE_DELETED_KEY);
+            location.reload();
+        }
+
         function openDB() {
             return new Promise((resolve, reject) => {
                 const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -1311,6 +1362,8 @@
         document.addEventListener('DOMContentLoaded', async () => {
             checkSessionAdminState();
             restoreSavedSettings();
+            applyDeletedCards();
+            injectDeleteButtons();
             restoreSavedTextEdits();
             await restoreSavedMultiImages();
             setupAllDragAndDrop();
@@ -1799,6 +1852,7 @@
                 handleFileInput({ target: { files: fileInput.files } }, newId);
             }
 
+            injectDeleteButtons();
             setupAllDragAndDrop();
             setupInlineEditing();
             document.getElementById('new-study-form').reset();
