@@ -998,6 +998,112 @@
                     </div>
                 </div>
 
+
+                <!-- CARD 10: Minz 6x+ ROAS Campaign Portfolio -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-editable="true" data-text-key="c10_tag">Egypt • E-Commerce</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c10_title">Minz — 6x+ ROAS Campaign Portfolio</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="c10_platform">Meta Ads</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400">Ad Spend</p>
+                                <p class="text-sm font-black text-brand-400" data-editable="true" data-text-key="c10_m1">183.5K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Blended ROAS</p>
+                                <p class="text-sm font-black text-white" data-editable="true" data-text-key="c10_m2">8.09x</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Peak ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-editable="true" data-text-key="c10_m3">17.5x</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-editable="true" data-text-key="c10_desc">
+                            19 campaigns at 6x+ Purchase ROAS from a live Meta ad account: 183.5K EGP spend returned ~1.49M EGP in purchase value across 1,603 purchases. Flagship ABO testing campaign ran 111.2K EGP at 7.90x (908 purchases); winners include Sales July 9.65x, New Sales Aug 9.34x, Winner-Testing 8.79x and 2/9 Sales 7.38x. Lifetime, Meta-attributed.
+                        </p>
+
+                        <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-10" data-card-id="10">
+                            <div id="img-container-10" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
+                                <img id="img-10" src="minz-6x.png" alt="Minz Meta Ads Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('10')" onerror="handleImageError(this, '10')">
+                            </div>
+
+                            <div id="placeholder-10" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
+                                <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-xs font-semibold text-slate-300">No screenshot loaded</p>
+                            </div>
+
+                            <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
+                                <button onclick="openLightboxCurrent('10')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                                    <span>🔍 Inspect Proof</span>
+                                </button>
+
+                                <div class="admin-only hidden flex items-center gap-1">
+                                    <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
+                                        <span>+ Add Image</span>
+                                        <input type="file" accept="image/*" multiple class="hidden" onchange="handleFileInput(event, '10')">
+                                    </label>
+                                    <button onclick="toggleSettingsDrawer('10')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-1.5 rounded-lg border border-slate-700 transition">⚙️</button>
+                                </div>
+                            </div>
+
+                            <div id="settings-drawer-10" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl w-full text-left space-y-3 text-xs">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Object Fit</label>
+                                    <select onchange="updateImageFit('10', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-200">
+                                        <option value="cover">Cover (Crop to fill)</option>
+                                        <option value="contain">Contain (Fit full image)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 mb-1">Height (px)</label>
+                                    <input type="range" min="120" max="500" value="180" oninput="updateImageHeight('10', this.value)" class="w-full accent-brand-500">
+                                </div>
+                            </div>
+
+                            <div id="thumbs-10" class="mt-2 flex gap-1.5 overflow-x-auto w-full max-w-full pb-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 11: Skinoria 6x+ Catalogue & Sales -->
+                <div class="case-card glass-panel rounded-2xl border border-slate-800 overflow-hidden flex flex-col glow-hover transition-all duration-300" data-category="ecom">
+                    <div class="p-5 flex-1 flex flex-col space-y-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-editable="true" data-text-key="c11_tag">Egypt • Skincare</span>
+                                <h3 class="text-lg font-bold text-white mt-1" data-editable="true" data-text-key="c11_title">Skinoria — Catalogue & Sales 6x+</h3>
+                            </div>
+                            <span class="text-xs font-bold text-brand-400 bg-slate-900 px-2 py-1 rounded border border-slate-800" data-editable="true" data-text-key="c11_platform">Meta Ads</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 text-center">
+                            <div>
+                                <p class="text-[10px] text-slate-400">Ad Spend</p>
+                                <p class="text-sm font-black text-brand-400" data-editable="true" data-text-key="c11_m1">4.4K EGP</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Blended ROAS</p>
+                                <p class="text-sm font-black text-white" data-editable="true" data-text-key="c11_m2">11.91x</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Peak ROAS</p>
+                                <p class="text-sm font-black text-brand-400" data-editable="true" data-text-key="c11_m3">17.99x</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed flex-1" data-editable="true" data-text-key="c11_desc">
+                            Two Sept 2026 campaigns above 6x Purchase ROAS: Catalogue Conversion ABO at 17.99x (10 purchases) and the Sales campaign at 9.73x (15 purchases), 11.91x blended on 4.4K EGP. Early-stage data, small sample size; Meta-attributed.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
