@@ -78,6 +78,16 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #22c55e;
         }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        html {
+            -webkit-tap-highlight-color: transparent;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950 min-h-screen flex flex-col">
@@ -177,67 +187,63 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="hidden sm:flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 transition shadow-lg shadow-emerald-500/20">
+                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 transition shadow-lg shadow-emerald-500/20 active:scale-95">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
-                    Let's Talk
+                    <span>Let's Talk</span>
                 </a>
-                <button id="admin-status-btn" onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition">
-                    <span id="admin-indicator-dot" class="w-2 h-2 rounded-full bg-slate-500"></span>
-                    <span id="admin-btn-text">Admin Login</span>
-                </button>
             </div>
         </div>
     </nav>
 
-    <header class="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <header class="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 shadow-md">
-                <span class="text-slate-400 text-xs font-bold mr-1 flex items-center gap-1.5">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6">
+            <div class="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-2xl sm:rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 shadow-md max-w-full">
+                <span class="text-slate-400 text-[11px] sm:text-xs font-bold mr-1 flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     Active Markets:
                 </span>
                 
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/eg.png" alt="Egypt Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/eg.png" alt="Egypt Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>Egypt 🇪🇬</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>KSA 🇸🇦</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/qa.png" alt="Qatar Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/qa.png" alt="Qatar Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>Qatar 🇶🇦</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>UAE 🇦🇪</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/om.png" alt="Oman Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/om.png" alt="Oman Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>Oman 🇴🇲</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/ps.png" alt="Palestine Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/ps.png" alt="Palestine Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>Palestine 🇵🇸</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2.5 py-1 rounded-full border border-slate-800 text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
-                    <img src="https://flagcdn.com/w40/iq.png" alt="Iraq Flag" class="w-4 h-3 object-cover rounded-sm shadow-sm">
+                <div class="flex items-center gap-1 bg-slate-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-800 text-[10px] sm:text-[11px] font-semibold text-slate-200 hover:border-brand-500/50 transition">
+                    <img src="https://flagcdn.com/w40/iq.png" alt="Iraq Flag" class="w-3.5 sm:w-4 h-2.5 sm:h-3 object-cover rounded-sm shadow-sm">
                     <span>Iraq 🇮🇶</span>
                 </div>
             </div>
         </div>
         
-        <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-4" data-editable="true" data-text-key="hero_title">
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4 leading-tight sm:leading-tight" data-editable="true" data-text-key="hero_title">
             Data-Driven <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-200">Scale Architecture</span> for MENA & GCC
         </h1>
-        <p class="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base leading-relaxed mb-8" data-editable="true" data-text-key="hero_desc">
+        <p class="max-w-2xl mx-auto text-slate-400 text-xs sm:text-base leading-relaxed mb-6 sm:mb-8 px-2" data-editable="true" data-text-key="hero_desc">
             Scaling 7-figure acquisition engines across Meta, Google, TikTok, and Snapchat. Obsessed with Unit Economics, Contribution Margin, and Net Profit. Transforming volatile ad spend into predictable, high-ROAS revenue streams for MENA & GCC brands.
         </p>
         
-        <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-sm font-bold bg-brand-500 hover:bg-brand-600 text-slate-950 transition shadow-lg shadow-brand-500/25 mb-4 hover:scale-105 transform duration-200">
+        <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-bold bg-brand-500 hover:bg-brand-600 text-slate-950 transition shadow-lg shadow-brand-500/25 mb-4 hover:scale-105 active:scale-95 transform duration-200">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
             Partner For Scale — WhatsApp Me
         </a>
@@ -421,12 +427,12 @@
                     <p class="text-sm text-slate-400 mt-1" data-editable="true" data-text-key="vault_desc">Detailed performance metrics across MENA verticals backed by verified account screenshots.</p>
                 </div>
                 
-                <div class="flex flex-wrap gap-2" id="filter-buttons">
-                    <button type="button" onclick="restoreDeletedCards()" class="admin-only hidden px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-amber-400 hover:bg-slate-700 border border-amber-500/30 transition">↺ Restore deleted</button>
-                    <button onclick="filterCategory('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition">All Projects</button>
-                    <button onclick="filterCategory('ecom')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">E-Commerce & Retail</button>
-                    <button onclick="filterCategory('clinics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Clinics & Services</button>
-                    <button onclick="filterCategory('gcc')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">GCC High-Ticket</button>
+                <div class="flex overflow-x-auto pb-2 sm:pb-0 scrollbar-none sm:flex-wrap gap-2 -mx-2 px-2 sm:mx-0 sm:px-0" id="filter-buttons">
+                    <button type="button" onclick="restoreDeletedCards()" class="admin-only hidden px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-amber-400 hover:bg-slate-700 border border-amber-500/30 transition whitespace-nowrap flex-shrink-0">↺ Restore deleted</button>
+                    <button onclick="filterCategory('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition whitespace-nowrap flex-shrink-0">All Projects</button>
+                    <button onclick="filterCategory('ecom')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap flex-shrink-0">E-Commerce & Retail</button>
+                    <button onclick="filterCategory('clinics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap flex-shrink-0">Clinics & Services</button>
+                    <button onclick="filterCategory('gcc')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap flex-shrink-0">GCC High-Ticket</button>
                 </div>
             </div>
 
@@ -1157,14 +1163,15 @@
                 <span class="inline-flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[11px]"><img src="https://flagcdn.com/w40/iq.png" class="w-3.5 h-2.5 rounded-sm"> Iraq</span>
             </div>
 
-            <div class="pt-3">
-                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition text-[13px] font-bold inline-flex items-center gap-1.5 mb-3">
+            <div class="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 max-w-xl mx-auto">
+                <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition text-xs font-bold inline-flex items-center gap-1.5 active:scale-95">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
-                    Connect on WhatsApp
+                    <span>Connect on WhatsApp</span>
                 </a>
-                <br>
-                <button onclick="openAdminModal()" class="text-slate-400 hover:text-brand-400 transition text-[11px] underline">
-                    Admin Access / Unlock Edit Mode
+                
+                <button id="admin-status-btn" onclick="openAdminModal()" class="text-slate-500 hover:text-slate-300 transition text-[11px] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/70 border border-slate-800/80 hover:border-slate-700">
+                    <span id="admin-indicator-dot" class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                    <span id="admin-btn-text">Admin Login</span>
                 </button>
             </div>
         </div>
@@ -1982,5 +1989,9 @@
             <span>نشر التعديلات لجميع الأجهزة (Publish Live)</span>
         </button>
     </div>
+    <!-- Mobile Floating WhatsApp Action Button -->
+    <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" aria-label="Chat on WhatsApp" class="sm:hidden fixed bottom-5 right-5 z-40 bg-emerald-500 hover:bg-emerald-400 text-slate-950 p-3.5 rounded-full shadow-2xl shadow-emerald-500/50 flex items-center justify-center transition-transform active:scale-90 border border-emerald-300/40">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
+    </a>
 </body>
 </html>
