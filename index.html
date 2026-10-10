@@ -137,35 +137,69 @@
         </div>
     </div>
 
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
-            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
-                <div class="flex items-center gap-2">
-                    <span id="lightbox-badge" class="px-2.5 py-1 text-xs font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 rounded-full">Verified Proof</span>
-                    <h3 id="lightbox-title" class="font-bold text-slate-100 text-sm sm:text-base">Screenshot Proof</h3>
+        <!-- ADVANCED MOBILE-OPTIMIZED LIGHTBOX WITH ZOOM & PAN -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex flex-col justify-between select-none overflow-hidden touch-none" role="dialog" aria-modal="true" aria-label="Image Proof Viewer">
+        <!-- TOP CONTROL BAR -->
+        <header class="relative z-30 flex items-center justify-between px-3 py-2.5 sm:px-6 sm:py-3.5 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 text-white shrink-0 gap-2">
+            <!-- Left Info -->
+            <div class="flex items-center gap-2 min-w-0">
+                <span id="lightbox-badge" class="px-2 py-0.5 text-[10px] sm:text-xs font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 rounded-full shrink-0">Verified Proof</span>
+                <h3 id="lightbox-title" class="font-bold text-slate-100 text-xs sm:text-sm truncate max-w-[130px] sm:max-w-md">Screenshot Proof</h3>
+                <span id="lightbox-counter" class="text-[11px] text-slate-400 font-medium shrink-0 ml-1 bg-slate-900 px-2 py-0.5 rounded-md border border-slate-800">1 / 1</span>
+            </div>
+
+            <!-- Right Controls: Zoom & Close -->
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <!-- Zoom Dock -->
+                <div class="flex items-center bg-slate-900/90 border border-slate-700/80 rounded-xl p-0.5 sm:p-1 shadow-lg">
+                    <button type="button" onclick="lightboxZoomOut()" id="lb-zoom-out" class="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 active:bg-slate-700 rounded-lg transition" title="Zoom Out (-)" aria-label="Zoom Out">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4"></path></svg>
+                    </button>
+                    <button type="button" onclick="lightboxResetZoom()" id="lb-zoom-level" class="px-2 py-1 text-[11px] sm:text-xs font-mono font-bold text-brand-400 hover:text-white transition" title="Click to Reset Zoom">
+                        100%
+                    </button>
+                    <button type="button" onclick="lightboxZoomIn()" id="lb-zoom-in" class="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 active:bg-slate-700 rounded-lg transition" title="Zoom In (+)" aria-label="Zoom In">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <button type="button" onclick="lightboxResetZoom()" id="lb-zoom-reset" class="w-8 h-8 hidden sm:flex items-center justify-center text-slate-400 hover:text-brand-400 hover:bg-slate-800 active:bg-slate-700 rounded-lg transition border-l border-slate-800 ml-0.5" title="Reset Zoom (0)">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    </button>
                 </div>
-                <button onclick="closeLightbox()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+
+                <!-- Close Button -->
+                <button type="button" onclick="closeLightbox()" class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-slate-900/90 hover:bg-rose-600/80 active:bg-rose-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl transition shadow-lg" title="Close (Esc)" aria-label="Close Preview">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
+        </header>
 
-            <div class="relative p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950/60 group">
-                <button onclick="navigateLightbox(-1)" class="absolute left-4 bg-slate-900/80 hover:bg-brand-500 hover:text-slate-950 text-slate-200 p-2.5 rounded-full border border-slate-700 transition z-10">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
+        <!-- MAIN VIEWPORT (INTERACTIVE CANVAS WITH PINCH, DRAG, DOUBLE-TAP) -->
+        <main id="lightbox-canvas" class="relative flex-1 w-full h-full overflow-hidden flex items-center justify-center cursor-default touch-none select-none">
+            <!-- Nav Previous -->
+            <button type="button" onclick="navigateLightbox(-1)" id="lb-prev-btn" class="absolute left-2 sm:left-6 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-slate-950/70 hover:bg-brand-500 hover:text-slate-950 text-slate-200 backdrop-blur-md rounded-full border border-slate-700/80 transition flex items-center justify-center shadow-2xl group" title="Previous Image (Left Arrow)" aria-label="Previous">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 transition group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
 
-                <img id="lightbox-img" src="" alt="Proof Screenshot" class="max-w-full max-h-[72vh] object-contain rounded-lg border border-slate-800 shadow-2xl">
-
-                <button onclick="navigateLightbox(1)" class="absolute right-4 bg-slate-900/80 hover:bg-brand-500 hover:text-slate-950 text-slate-200 p-2.5 rounded-full border border-slate-700 transition z-10">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
+            <!-- Image Container with Hardware-accelerated CSS Transform -->
+            <div id="lightbox-transform-container" class="w-full h-full flex items-center justify-center pointer-events-auto">
+                <img id="lightbox-img" src="" alt="Proof Screenshot" draggable="false" class="max-w-[96vw] max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-100 ease-out will-change-transform select-none">
             </div>
 
-            <div class="p-3 border-t border-slate-800 bg-slate-900 flex justify-between items-center text-xs text-slate-400">
-                <span id="lightbox-counter">Image 1 of 1</span>
-                <button onclick="closeLightbox()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition font-medium">Close Preview</button>
+            <!-- Nav Next -->
+            <button type="button" onclick="navigateLightbox(1)" id="lb-next-btn" class="absolute right-2 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-slate-950/70 hover:bg-brand-500 hover:text-slate-950 text-slate-200 backdrop-blur-md rounded-full border border-slate-700/80 transition flex items-center justify-center shadow-2xl group" title="Next Image (Right Arrow)" aria-label="Next">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+
+            <!-- Mobile Gesture Floating Hint -->
+            <div id="lb-gesture-hint" class="absolute bottom-16 sm:bottom-20 z-20 pointer-events-none px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-[11px] sm:text-xs text-slate-300 shadow-xl transition-opacity duration-500 flex items-center gap-1.5 opacity-90">
+                <span>🔍 Pinch or double-tap to zoom • Drag to pan</span>
             </div>
-        </div>
+        </main>
+
+        <!-- BOTTOM THUMBNAILS & BAR -->
+        <footer id="lightbox-footer" class="relative z-30 flex flex-col items-center justify-center px-4 py-2 sm:py-3 bg-slate-950/80 backdrop-blur-md border-t border-slate-800/80 gap-2 shrink-0">
+            <div id="lightbox-thumbs" class="flex items-center justify-center gap-2 overflow-x-auto max-w-full py-0.5"></div>
+        </footer>
     </div>
 
     <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800">
@@ -359,8 +393,12 @@
                 <div class="w-full lg:w-96 space-y-3">
                     <div class="screenshot-box relative rounded-2xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[260px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-about" data-card-id="about">
                         
-                        <div id="img-container-about" class="w-full overflow-hidden rounded-xl flex items-center justify-center bg-slate-900 transition-all">
-                            <img id="img-about" src="personal photo.jpg" alt="Ahmed Essam Mahmoud" loading="eager" fetchpriority="high" decoding="async" class="w-full h-80 object-cover cursor-pointer hover:opacity-95 transition" onclick="openLightboxCurrent('about')" onerror="handleImageError(this, 'about')">
+                        <div id="img-container-about" class="w-full overflow-hidden rounded-xl flex items-center justify-center bg-slate-900 transition-all cursor-pointer relative group/img" onclick="openLightboxCurrent('about')">
+                            <img id="img-about" src="personal photo.jpg" alt="Ahmed Essam Mahmoud" loading="eager" fetchpriority="high" decoding="async" class="w-full h-80 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, 'about')">
+                            <div class="absolute top-2.5 right-2.5 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2.5 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                <span>Tap to Zoom</span>
+                            </div>
                         </div>
 
                         <div id="placeholder-about" class="hidden flex flex-col items-center justify-center p-6 space-y-2">
@@ -469,8 +507,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-1" data-card-id="1">
-                            <div id="img-container-1" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-1" src="1.jpg" alt="Accessories Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('1')" onerror="handleImageError(this, '1')">
+                            <div id="img-container-1" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('1')">
+                                <img id="img-1" src="1.jpg" alt="Accessories Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '1')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-1" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -479,8 +521,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('1')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('1')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -542,8 +585,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-3" data-card-id="3">
-                            <div id="img-container-3" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-3" src="3.jpg" alt="Men's Fashion Sales Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('3')" onerror="handleImageError(this, '3')">
+                            <div id="img-container-3" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('3')">
+                                <img id="img-3" src="3.jpg" alt="Men's Fashion Sales Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '3')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-3" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -552,8 +599,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('3')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('3')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -615,8 +663,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-5" data-card-id="5">
-                            <div id="img-container-5" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-5" src="5.jpeg" alt="Women's Fashion Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('5')" onerror="handleImageError(this, '5')">
+                            <div id="img-container-5" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('5')">
+                                <img id="img-5" src="5.jpeg" alt="Women's Fashion Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '5')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-5" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -625,8 +677,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('5')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('5')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -688,8 +741,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-7" data-card-id="7">
-                            <div id="img-container-7" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-7" src="7.jpg" alt="Sales Perfumes Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('7')" onerror="handleImageError(this, '7')">
+                            <div id="img-container-7" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('7')">
+                                <img id="img-7" src="7.jpg" alt="Sales Perfumes Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '7')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-7" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -698,8 +755,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('7')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('7')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -761,8 +819,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-15" data-card-id="15">
-                            <div id="img-container-15" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-15" src="15.PNG" alt="Clinics Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('15')" onerror="handleImageError(this, '15')">
+                            <div id="img-container-15" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('15')">
+                                <img id="img-15" src="15.PNG" alt="Clinics Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '15')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-15" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -771,8 +833,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('15')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('15')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -834,8 +897,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-18" data-card-id="18">
-                            <div id="img-container-18" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-18" src="18.PNG" alt="Qatar TikTok Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('18')" onerror="handleImageError(this, '18')">
+                            <div id="img-container-18" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('18')">
+                                <img id="img-18" src="18.PNG" alt="Qatar TikTok Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '18')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-18" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -844,8 +911,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('18')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('18')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -907,8 +975,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-9" data-card-id="9">
-                            <div id="img-container-9" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-9" src="14.jpg" alt="Perfumes Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('9')" onerror="handleImageError(this, '9')">
+                            <div id="img-container-9" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('9')">
+                                <img id="img-9" src="14.jpg" alt="Perfumes Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, '9')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-9" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -917,8 +989,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('9')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('9')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -981,8 +1054,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-minz6x" data-card-id="minz6x">
-                            <div id="img-container-minz6x" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-minz6x" src="minz-6x.png" alt="Meta Ads Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('minz6x')" onerror="handleImageError(this, 'minz6x')">
+                            <div id="img-container-minz6x" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('minz6x')">
+                                <img id="img-minz6x" src="minz-6x.png" alt="Meta Ads Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, 'minz6x')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-minz6x" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -991,8 +1068,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('minz6x')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('minz6x')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -1054,8 +1132,12 @@
                         </p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-skin6x" data-card-id="skin6x">
-                            <div id="img-container-skin6x" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-skin6x" src="skinoria-scale.png" alt="Skincare Meta Ads Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition" onclick="openLightboxCurrent('skin6x')" onerror="handleImageError(this, 'skin6x')">
+                            <div id="img-container-skin6x" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('skin6x')">
+                                <img id="img-skin6x" src="skinoria-scale.png" alt="Skincare Meta Ads Proof" loading="lazy" decoding="async" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300" onerror="handleImageError(this, 'skin6x')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-skin6x" class="hidden flex flex-col items-center justify-center p-4 space-y-2">
@@ -1064,8 +1146,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('skin6x')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('skin6x')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
 
                                 <div class="admin-only hidden flex items-center gap-1">
@@ -1371,6 +1454,7 @@
             setupInlineEditing();
             renderAllCardImages();
             updateAdminUI();
+            setupLightboxInteractions();
         });
 
         async function loadCloudTextEdits() {
@@ -1411,6 +1495,7 @@
                     isAdminUnlocked = false;
                     sessionStorage.removeItem('ae_admin_unlocked');
                     updateAdminUI();
+            setupLightboxInteractions();
                     showToast('Admin Mode Locked.');
                 }
                 return;
@@ -1449,6 +1534,7 @@
                     localStorage.setItem(STORAGE_GH_TOKEN_KEY, tokenVal);
                 }
                 updateAdminUI();
+            setupLightboxInteractions();
                 closeAdminModal();
                 showToast('Admin Mode Unlocked! Click any text on screen to edit.');
                 document.getElementById('admin-pin-input').value = '';
@@ -1823,16 +1909,149 @@
             }
         }
 
+        // ==========================================
+        // ADVANCED LIGHTBOX ZOOM & PAN ENGINE
+        // ==========================================
+        let lbScale = 1.0;
+        let lbTranslateX = 0.0;
+        let lbTranslateY = 0.0;
+        let lbIsDragging = false;
+        let lbStartX = 0.0;
+        let lbStartY = 0.0;
+        let lbTouchStartX = 0.0;
+        let lbTouchStartY = 0.0;
+        let lbInitialPinchDistance = 0.0;
+        let lbInitialPinchScale = 1.0;
+        let lbLastTapTime = 0;
+        let lbHintTimeout = null;
+
+        function applyLightboxTransform(smooth = false) {
+            const img = document.getElementById('lightbox-img');
+            const zoomLevel = document.getElementById('lb-zoom-level');
+            const zoomOutBtn = document.getElementById('lb-zoom-out');
+            const zoomInBtn = document.getElementById('lb-zoom-in');
+            const canvas = document.getElementById('lightbox-canvas');
+
+            if (!img) return;
+
+            if (smooth) {
+                img.style.transition = 'transform 0.22s cubic-bezier(0.2, 0, 0.2, 1)';
+            } else {
+                img.style.transition = 'none';
+            }
+
+            img.style.transform = `translate(${lbTranslateX}px, ${lbTranslateY}px) scale(${lbScale})`;
+
+            const pct = Math.round(lbScale * 100);
+            if (zoomLevel) zoomLevel.textContent = `${pct}%`;
+
+            if (zoomOutBtn) zoomOutBtn.disabled = (lbScale <= 1.02);
+            if (zoomInBtn) zoomInBtn.disabled = (lbScale >= 4.4);
+
+            if (canvas) {
+                if (lbScale > 1.05) {
+                    canvas.style.cursor = lbIsDragging ? 'grabbing' : 'grab';
+                } else {
+                    canvas.style.cursor = 'default';
+                }
+            }
+        }
+
+        function clampLightboxTranslate() {
+            const img = document.getElementById('lightbox-img');
+            const canvas = document.getElementById('lightbox-canvas');
+            if (!img || !canvas) return;
+
+            if (lbScale <= 1.05) {
+                lbTranslateX = 0;
+                lbTranslateY = 0;
+                return;
+            }
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const renderedW = img.offsetWidth * lbScale;
+            const renderedH = img.offsetHeight * lbScale;
+
+            const maxX = Math.max(0, (renderedW - canvasRect.width) / 2 + 60);
+            const maxY = Math.max(0, (renderedH - canvasRect.height) / 2 + 60);
+
+            lbTranslateX = Math.min(maxX, Math.max(-maxX, lbTranslateX));
+            lbTranslateY = Math.min(maxY, Math.max(-maxY, lbTranslateY));
+        }
+
+        function lightboxZoomIn() {
+            lbScale = Math.min(4.5, lbScale * 1.35);
+            if (lbScale <= 1.02) {
+                lbScale = 1.0;
+                lbTranslateX = 0;
+                lbTranslateY = 0;
+            } else {
+                clampLightboxTranslate();
+            }
+            applyLightboxTransform(true);
+            hideGestureHint();
+        }
+
+        function lightboxZoomOut() {
+            lbScale = Math.max(1.0, lbScale / 1.35);
+            if (lbScale <= 1.02) {
+                lbScale = 1.0;
+                lbTranslateX = 0;
+                lbTranslateY = 0;
+            } else {
+                clampLightboxTranslate();
+            }
+            applyLightboxTransform(true);
+        }
+
+        function lightboxResetZoom() {
+            lbScale = 1.0;
+            lbTranslateX = 0;
+            lbTranslateY = 0;
+            applyLightboxTransform(true);
+        }
+
+        function hideGestureHint() {
+            const hint = document.getElementById('lb-gesture-hint');
+            if (hint) {
+                hint.classList.add('opacity-0');
+                setTimeout(() => hint.classList.add('hidden'), 500);
+            }
+        }
+
+        function showGestureHint() {
+            const hint = document.getElementById('lb-gesture-hint');
+            if (hint) {
+                hint.classList.remove('hidden', 'opacity-0');
+                if (lbHintTimeout) clearTimeout(lbHintTimeout);
+                lbHintTimeout = setTimeout(() => {
+                    hideGestureHint();
+                }, 3200);
+            }
+        }
+
         function openLightboxCurrent(cardId) {
-            const arr = cardImages[cardId] || [];
-            if (arr.length === 0) {
-                showToast('No image attached to preview.', true);
+            let arr = cardImages[cardId];
+            if (!arr || arr.length === 0) {
+                const imgEl = document.getElementById(`img-${cardId}`);
+                if (imgEl && imgEl.src && !imgEl.classList.contains('hidden')) {
+                    arr = [imgEl.src];
+                    cardImages[cardId] = arr;
+                }
+            }
+            if (!arr || arr.length === 0) {
+                showToast('No screenshot attached to preview.', true);
                 return;
             }
             currentLightboxCardId = cardId;
             currentLightboxImgIndex = activeImageIndexes[cardId] || 0;
+            if (currentLightboxImgIndex >= arr.length) currentLightboxImgIndex = 0;
+
+            document.body.style.overflow = 'hidden';
+            lightboxResetZoom();
             updateLightboxView();
             document.getElementById('lightbox-modal').classList.remove('hidden');
+            showGestureHint();
         }
 
         function updateLightboxView() {
@@ -1840,11 +2059,52 @@
             const imgEl = document.getElementById('lightbox-img');
             const counter = document.getElementById('lightbox-counter');
             const title = document.getElementById('lightbox-title');
+            const thumbsContainer = document.getElementById('lightbox-thumbs');
+            const footerEl = document.getElementById('lightbox-footer');
+            const prevBtn = document.getElementById('lb-prev-btn');
+            const nextBtn = document.getElementById('lb-next-btn');
 
             if (arr.length > 0) {
                 imgEl.src = arr[currentLightboxImgIndex];
-                counter.textContent = `Image ${currentLightboxImgIndex + 1} of ${arr.length}`;
-                title.textContent = `Project Proof Screenshot`;
+                if (counter) counter.textContent = `${currentLightboxImgIndex + 1} / ${arr.length}`;
+
+                let cardTitle = 'Project Proof Screenshot';
+                if (currentLightboxCardId === 'about') {
+                    cardTitle = 'Profile & Experience';
+                } else {
+                    const cardEl = document.getElementById(`dropzone-${currentLightboxCardId}`)?.closest('.case-card');
+                    if (cardEl) {
+                        const h3 = cardEl.querySelector('h3');
+                        if (h3) cardTitle = h3.textContent.trim();
+                    }
+                }
+                if (title) title.textContent = cardTitle;
+
+                if (arr.length <= 1) {
+                    if (prevBtn) prevBtn.classList.add('hidden');
+                    if (nextBtn) nextBtn.classList.add('hidden');
+                    if (footerEl) footerEl.classList.add('hidden');
+                } else {
+                    if (prevBtn) prevBtn.classList.remove('hidden');
+                    if (nextBtn) nextBtn.classList.remove('hidden');
+                    if (footerEl) footerEl.classList.remove('hidden');
+                    if (thumbsContainer) {
+                        thumbsContainer.innerHTML = '';
+                        arr.forEach((src, idx) => {
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.className = `w-12 h-9 sm:w-14 sm:h-10 rounded-lg overflow-hidden border-2 transition shrink-0 ${idx === currentLightboxImgIndex ? 'border-brand-400 scale-105 shadow-md shadow-brand-500/30' : 'border-slate-800 opacity-60 hover:opacity-100'}`;
+                            btn.innerHTML = `<img src="${src}" class="w-full h-full object-cover">`;
+                            btn.onclick = (e) => {
+                                e.stopPropagation();
+                                currentLightboxImgIndex = idx;
+                                lightboxResetZoom();
+                                updateLightboxView();
+                            };
+                            thumbsContainer.appendChild(btn);
+                        });
+                    }
+                }
             }
         }
 
@@ -1852,12 +2112,210 @@
             const arr = cardImages[currentLightboxCardId] || [];
             if (arr.length <= 1) return;
             currentLightboxImgIndex = (currentLightboxImgIndex + dir + arr.length) % arr.length;
+            lightboxResetZoom();
             updateLightboxView();
         }
 
         function closeLightbox() {
             document.getElementById('lightbox-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+            lightboxResetZoom();
+            if (lbHintTimeout) clearTimeout(lbHintTimeout);
         }
+
+        function setupLightboxInteractions() {
+            const canvas = document.getElementById('lightbox-canvas');
+            const img = document.getElementById('lightbox-img');
+            if (!canvas || !img) return;
+
+            function handleDoubleAction(clientX, clientY) {
+                if (lbScale > 1.1) {
+                    lightboxResetZoom();
+                } else {
+                    const canvasRect = canvas.getBoundingClientRect();
+                    const offsetX = clientX - (canvasRect.left + canvasRect.width / 2);
+                    const offsetY = clientY - (canvasRect.top + canvasRect.height / 2);
+                    lbScale = 2.4;
+                    lbTranslateX = -offsetX * 1.1;
+                    lbTranslateY = -offsetY * 1.1;
+                    clampLightboxTranslate();
+                    applyLightboxTransform(true);
+                    hideGestureHint();
+                }
+            }
+
+            // Click backdrop to close or reset
+            canvas.addEventListener('click', (e) => {
+                if (e.target === canvas || e.target.id === 'lightbox-transform-container') {
+                    if (lbScale <= 1.05) {
+                        closeLightbox();
+                    } else {
+                        lightboxResetZoom();
+                    }
+                }
+            });
+
+            // Desktop Double Click
+            canvas.addEventListener('dblclick', (e) => {
+                e.preventDefault();
+                handleDoubleAction(e.clientX, e.clientY);
+            });
+
+            // Desktop Mouse Drag
+            canvas.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                if (lbScale > 1.05) {
+                    e.preventDefault();
+                    lbIsDragging = true;
+                    lbStartX = e.clientX - lbTranslateX;
+                    lbStartY = e.clientY - lbTranslateY;
+                    canvas.style.cursor = 'grabbing';
+                }
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!lbIsDragging) return;
+                e.preventDefault();
+                lbTranslateX = e.clientX - lbStartX;
+                lbTranslateY = e.clientY - lbStartY;
+                clampLightboxTranslate();
+                applyLightboxTransform(false);
+                hideGestureHint();
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (lbIsDragging) {
+                    lbIsDragging = false;
+                    clampLightboxTranslate();
+                    applyLightboxTransform(true);
+                }
+            });
+
+            // Desktop Wheel Zoom
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const factor = e.deltaY < 0 ? 1.25 : 0.8;
+                const newScale = Math.min(4.5, Math.max(1.0, lbScale * factor));
+                if (newScale <= 1.05) {
+                    lightboxResetZoom();
+                } else {
+                    lbScale = newScale;
+                    clampLightboxTranslate();
+                    applyLightboxTransform(true);
+                    hideGestureHint();
+                }
+            }, { passive: false });
+
+            // Mobile Touch Events (Pinch, Pan, Swipe, Double-Tap)
+            canvas.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 2) {
+                    e.preventDefault();
+                    const t1 = e.touches[0];
+                    const t2 = e.touches[1];
+                    lbInitialPinchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                    lbInitialPinchScale = lbScale;
+                } else if (e.touches.length === 1) {
+                    const t = e.touches[0];
+                    const now = Date.now();
+                    if (now - lbLastTapTime < 300) {
+                        e.preventDefault();
+                        handleDoubleAction(t.clientX, t.clientY);
+                        lbLastTapTime = 0;
+                        return;
+                    }
+                    lbLastTapTime = now;
+
+                    lbTouchStartX = t.clientX;
+                    lbTouchStartY = t.clientY;
+                    lbStartX = t.clientX - lbTranslateX;
+                    lbStartY = t.clientY - lbTranslateY;
+
+                    if (lbScale > 1.05) {
+                        lbIsDragging = true;
+                    }
+                }
+            }, { passive: false });
+
+            canvas.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 2) {
+                    e.preventDefault();
+                    const t1 = e.touches[0];
+                    const t2 = e.touches[1];
+                    const currentDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                    if (lbInitialPinchDistance > 0) {
+                        const factor = currentDist / lbInitialPinchDistance;
+                        lbScale = Math.min(4.5, Math.max(1.0, lbInitialPinchScale * factor));
+                        if (lbScale > 1.05) clampLightboxTranslate();
+                        applyLightboxTransform(false);
+                        hideGestureHint();
+                    }
+                } else if (e.touches.length === 1 && lbIsDragging && lbScale > 1.05) {
+                    e.preventDefault();
+                    const t = e.touches[0];
+                    lbTranslateX = t.clientX - lbStartX;
+                    lbTranslateY = t.clientY - lbStartY;
+                    clampLightboxTranslate();
+                    applyLightboxTransform(false);
+                    hideGestureHint();
+                }
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', (e) => {
+                if (e.touches.length === 0) {
+                    if (lbIsDragging) {
+                        lbIsDragging = false;
+                        clampLightboxTranslate();
+                        applyLightboxTransform(true);
+                    }
+
+                    if (lbScale <= 1.05 && e.changedTouches.length === 1) {
+                        const t = e.changedTouches[0];
+                        const deltaX = t.clientX - lbTouchStartX;
+                        const deltaY = t.clientY - lbTouchStartY;
+                        if (Math.abs(deltaX) > 60 && Math.abs(deltaY) < 50) {
+                            if (deltaX > 0) {
+                                navigateLightbox(-1);
+                            } else {
+                                navigateLightbox(1);
+                            }
+                        }
+                    }
+
+                    if (lbScale <= 1.05) {
+                        lbScale = 1.0;
+                        lbTranslateX = 0;
+                        lbTranslateY = 0;
+                        applyLightboxTransform(true);
+                    }
+                }
+            });
+
+            // Keyboard Shortcuts
+            window.addEventListener('keydown', (e) => {
+                const modal = document.getElementById('lightbox-modal');
+                if (!modal || modal.classList.contains('hidden')) return;
+
+                if (e.key === 'Escape') {
+                    if (lbScale > 1.05) {
+                        lightboxResetZoom();
+                    } else {
+                        closeLightbox();
+                    }
+                } else if (e.key === '+' || e.key === '=') {
+                    lightboxZoomIn();
+                } else if (e.key === '-' || e.key === '_') {
+                    lightboxZoomOut();
+                } else if (e.key === '0' || e.key === 'r') {
+                    lightboxResetZoom();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            });
+        }
+
+        
 
         function filterCategory(cat) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1921,8 +2379,12 @@
                         <p class="text-xs text-slate-300 leading-relaxed flex-1" data-editable="true" data-text-key="custom_desc_${newId}">${desc}</p>
 
                         <div class="screenshot-box relative rounded-xl overflow-hidden bg-slate-950 border border-dashed border-slate-700 min-h-[180px] flex flex-col items-center justify-center p-2 text-center group" id="dropzone-${newId}" data-card-id="${newId}">
-                            <div id="img-container-${newId}" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900">
-                                <img id="img-${newId}" src="" alt="Proof" class="w-full h-44 object-cover cursor-pointer hover:opacity-90 transition hidden" onclick="openLightboxCurrent('${newId}')" onerror="handleImageError(this, '${newId}')">
+                            <div id="img-container-${newId}" class="w-full overflow-hidden rounded-lg flex items-center justify-center bg-slate-900 cursor-pointer relative group/img" onclick="openLightboxCurrent('${newId}')">
+                                <img id="img-${newId}" src="" alt="Proof" class="w-full h-44 object-cover cursor-pointer hover:scale-[1.02] transition-transform duration-300 hidden" onerror="handleImageError(this, '${newId}')">
+                                <div class="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md text-emerald-400 px-2 py-1 rounded-lg border border-emerald-500/30 text-[10px] font-bold shadow-lg pointer-events-none flex items-center gap-1 opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Tap to Zoom</span>
+                                </div>
                             </div>
 
                             <div id="placeholder-${newId}" class="flex flex-col items-center justify-center p-4 space-y-2">
@@ -1931,8 +2393,9 @@
                             </div>
 
                             <div class="mt-2 w-full flex items-center justify-between gap-2 px-1">
-                                <button onclick="openLightboxCurrent('${newId}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1">
-                                    <span>🔍 Inspect Proof</span>
+                                <button onclick="openLightboxCurrent('${newId}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold py-1.5 px-3 rounded-lg border border-slate-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    <span>Inspect Proof & Zoom</span>
                                 </button>
                                 <div class="admin-only hidden flex items-center gap-1">
                                     <label class="cursor-pointer bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-[11px] font-semibold py-1.5 px-2.5 rounded-lg border border-brand-500/30 transition">
@@ -1975,6 +2438,7 @@
             setupInlineEditing();
             document.getElementById('new-study-form').reset();
             updateAdminUI();
+            setupLightboxInteractions();
             showToast('New Case Study added to portfolio!');
         }
     </script>
