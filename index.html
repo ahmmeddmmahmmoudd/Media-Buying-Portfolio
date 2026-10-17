@@ -96,6 +96,40 @@
         html {
             -webkit-tap-highlight-color: transparent;
         }
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body {
+                background-color: #0b1329 !important;
+                color: #f8fafc !important;
+            }
+            nav,
+            #admin-modal,
+            #lightbox-modal,
+            #strategy-modal,
+            #reorder-modal,
+            #toast-container,
+            #admin-floating-bar,
+            .admin-only,
+            a[href*="wa.me"],
+            button[onclick*="openStrategyModal"],
+            button[onclick*="openLightboxCurrent"],
+            .screenshot-box svg,
+            .screenshot-box span {
+                display: none !important;
+            }
+            .case-card {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 20px !important;
+            }
+            section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950 min-h-screen flex flex-col">
@@ -227,6 +261,7 @@
                 <a href="#methodology" class="hover:text-brand-400 transition">Growth System</a>
                 <a href="#case-studies" class="hover:text-brand-400 transition">Case Studies</a>
                 <a href="#free-audit" class="hover:text-brand-400 transition text-brand-400 font-semibold">Free Audit</a>
+                <a href="Ahmed-Essam-Mahmoud-Portfolio.pdf" download class="hover:text-brand-400 transition flex items-center gap-1 text-brand-400 font-semibold"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> Portfolio (PDF)</a>
                 <a href="Ahmed-Essam-Mahmoud-Galal-CV.pdf" download class="hover:text-brand-400 transition flex items-center gap-1"><svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> CV (PDF)</a>
                 <a href="#add-study" class="hover:text-brand-400 transition admin-only hidden">Add Case Study</a>
             </div>
@@ -292,6 +327,10 @@
             <a href="https://wa.me/message/YCNZBEYHQ5YEH1" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-bold bg-brand-500 hover:bg-brand-600 text-slate-950 transition shadow-lg shadow-brand-500/25 hover:scale-105 active:scale-95 transform duration-200">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021zM12.062 3.199c-4.526 0-8.2 3.673-8.2 8.19 0 1.77.568 3.42 1.554 4.757l-.95 3.483 3.565-.935a8.14 8.14 0 0 0 4.032 1.055h.009c4.524 0 8.198-3.674 8.198-8.19 0-4.516-3.674-8.19-8.198-8.19z"></path><path d="M16.924 14.17c-.267-.134-1.58-.781-1.824-.871-.244-.09-.422-.134-.6.134-.178.267-.689.871-.844 1.05-.156.177-.311.2-.578.066-.267-.134-1.127-.416-2.146-1.325-.792-.707-1.327-1.58-1.483-1.848-.155-.267-.016-.412.117-.546.12-.12.267-.312.4-.468.134-.155.178-.267.267-.444.089-.178.045-.334-.022-.468-.067-.134-.6-1.444-.822-1.978-.217-.52-.437-.45-.6-.458-.156-.008-.334-.008-.511-.008-.178 0-.467.067-.711.334-.245.267-.934.912-.934 2.224s.956 2.58 1.089 2.757c.133.178 1.88 2.868 4.55 3.992 2.668 1.123 2.668.749 3.157.705.489-.044 1.58-.645 1.802-1.267.222-.622.222-1.156.155-1.267-.066-.111-.244-.178-.511-.311z"></path></svg>
                 <span>Partner For Scale — WhatsApp</span>
+            </a>
+            <a href="Ahmed-Essam-Mahmoud-Portfolio.pdf" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-bold bg-brand-500/15 hover:bg-brand-500 text-brand-400 hover:text-slate-950 border border-brand-500/40 transition shadow-lg shadow-brand-500/10 hover:scale-105 active:scale-95 transform duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>Download Portfolio Deck (PDF)</span>
             </a>
             <a href="Ahmed-Essam-Mahmoud-Galal-CV.pdf" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 transition shadow-lg hover:scale-105 active:scale-95 transform duration-200">
                 <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>

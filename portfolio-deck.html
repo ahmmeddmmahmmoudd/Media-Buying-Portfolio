@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ahmed Essam Mahmoud - Performance Marketing & Growth Consultant Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #060b18;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Slide Base - Exactly A4 Landscape: 297mm x 210mm */
+.slide {
+  width: 297mm;
+  height: 210mm;
+  max-width: 297mm;
+  max-height: 210mm;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 85% 15%, rgba(34, 197, 94, 0.08) 0%, rgba(6, 11, 24, 0) 50%),
+              radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.05) 0%, rgba(6, 11, 24, 0) 50%),
+              #070d1e;
+  padding: 8mm 12mm 7mm 12mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen {
+  body {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    background: #02040a;
+  }
+  .slide {
+    box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Header & Running Bar */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 2mm;
+  margin-bottom: 3mm;
+  height: 9mm;
+  flex-shrink: 0;
+}
+
+.running-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.running-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+  color: #060b18;
+  font-weight: 900;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.5px;
+}
+
+.running-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.running-title {
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.running-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 8.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.running-tag {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 0.3px;
+}
+
+/* Running Footer */
+.slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2mm;
+  height: 6mm;
+  font-size: 8px;
+  color: #64748b;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-center {
+  color: #475569;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 7.5px;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.footer-right a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+/* Common Card Styling (Double-Bezel Architecture) */
+.card-bezel {
+  background: rgba(15, 26, 54, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  padding: 3mm;
+}
+
+/* Slide 1 - Cover Slide Specifics */
+.cover-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.cover-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18mm;
+  margin-top: 4mm;
+  margin-bottom: 4mm;
+}
+
+.cover-left {
+  flex: 1;
+}
+
+.cover-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  margin-bottom: 4mm;
+}
+
+.cover-name {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.8px;
+  line-height: 1.05;
+  margin: 0 0 2mm 0;
+}
+
+.cover-tagline {
+  font-size: 14px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: -0.2px;
+  margin: 0 0 4mm 0;
+}
+
+.cover-bio {
+  font-size: 9.8px;
+  line-height: 1.48;
+  color: #94a3b8;
+  max-width: 155mm;
+  margin: 0 0 5mm 0;
+}
+
+.cover-bio strong {
+  color: #f1f5f9;
+}
+
+.cover-markets {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8.5px;
+  color: #cbd5e1;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 9px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.cover-markets span.label {
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 7.5px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.cover-photo-wrapper {
+  position: relative;
+  width: 58mm;
+  height: 58mm;
+  flex-shrink: 0;
+}
+
+.cover-photo-shell {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  padding: 2.5mm;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cover-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 12px;
+  display: block;
+}
+
+.cover-photo-badge {
+  position: absolute;
+  bottom: -2mm;
+  right: -2mm;
+  background: #0f172a;
+  border: 1.5px solid #22c55e;
+  color: #4ade80;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+/* Aggregated Metric Ribbon (Slide 1) */
+.metrics-grid-hero {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3mm;
+  margin-top: 1mm;
+  margin-bottom: 3mm;
+}
+
+.hero-metric-card {
+  background: rgba(15, 26, 54, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 3mm 3.5mm;
+  text-align: center;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.hero-metric-val {
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 1.5px;
+}
+
+.hero-metric-val.green { color: #22c55e; }
+.hero-metric-val.blue { color: #38bdf8; }
+.hero-metric-val.amber { color: #fbbf24; }
+.hero-metric-val.purple { color: #c084fc; }
+
+.hero-metric-label {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-metric-sub {
+  font-size: 7px;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+/* Contacts Bar (Slide 1) */
+.cover-contacts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2.5mm 4mm;
+  font-size: 8.2px;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-pill svg {
+  width: 12px;
+  height: 12px;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.contact-pill.wa svg { color: #22c55e; }
+
+/* Slide 2: Growth Operating System */
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4.5mm;
+  flex: 1;
+  margin-top: 1mm;
+  margin-bottom: 2mm;
+}
+
+.pillar-card {
+  background: rgba(15, 26, 54, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 4mm 4.5mm;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2.5mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pillar-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.pillar-1 .pillar-num { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+.pillar-2 .pillar-num { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.pillar-3 .pillar-num { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+.pillar-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.pillar-subtitle {
+  font-size: 7.8px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.pillar-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2mm;
+  flex: 1;
+}
+
+.pillar-bullets li {
+  font-size: 8.5px;
+  line-height: 1.38;
+  color: #94a3b8;
+  position: relative;
+  padding-left: 12px;
+}
+
+.pillar-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #38bdf8;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.pillar-bullets li strong {
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+.methodology-bottom-bar {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2.5mm 4mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stack-title {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.stack-pills {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stack-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 7.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ========================================================
+   CASE STUDY SLIDES (Slides 3 - 11) - Pixel Perfect 2-Col
+   ======================================================== */
+.case-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5mm;
+  min-height: 0;
+}
+
+/* Top Banner of Case Study */
+.case-top-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 26, 54, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2mm 3.5mm;
+}
+
+.case-top-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.case-badge-cat {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  color: #4ade80;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.case-main-title {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+.case-top-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.case-platform-badge {
+  background: #0b1329;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+}
+
+.case-highlight-chip {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1.5px 7px;
+  border-radius: 4px;
+}
+
+/* KPI Ribbon (4 metrics) */
+.case-kpi-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5mm;
+}
+
+.case-kpi-box {
+  background: rgba(11, 20, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  padding: 2mm 3mm;
+  text-align: center;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+}
+
+.case-kpi-label {
+  font-size: 7.2px;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 1px;
+}
+
+.case-kpi-val {
+  font-size: 14.5px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+}
+
+.case-kpi-val.highlight {
+  color: #22c55e;
+}
+
+/* Main Split: Left Story / Right Proof */
+.case-split {
+  display: grid;
+  grid-template-columns: 104mm 1fr;
+  gap: 3.5mm;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Left Narrative Column */
+.case-narrative {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.8mm;
+  background: rgba(15, 26, 54, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+  padding: 2.8mm 3.2mm;
+  min-height: 0;
+}
+
+.narrative-block {
+  border-left: 2px solid;
+  padding-left: 2.5mm;
+  padding-top: 0.5mm;
+  padding-bottom: 0.5mm;
+}
+
+.narrative-block.bottleneck { border-color: #f43f5e; }
+.narrative-block.audit { border-color: #f59e0b; }
+.narrative-block.playbook { border-color: #38bdf8; }
+.narrative-block.impact { border-color: #22c55e; }
+
+.narrative-header {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+
+.narrative-block.bottleneck .narrative-header { color: #fb7185; }
+.narrative-block.audit .narrative-header { color: #fbbf24; }
+.narrative-block.playbook .narrative-header { color: #38bdf8; }
+.narrative-block.impact .narrative-header { color: #4ade80; }
+
+.narrative-text {
+  font-size: 7.7px;
+  line-height: 1.34;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.narrative-text strong {
+  color: #f1f5f9;
+}
+
+.narrative-list {
+  margin: 0;
+  padding-left: 10px;
+}
+
+.narrative-list li {
+  font-size: 7.5px;
+  line-height: 1.3;
+  color: #94a3b8;
+  margin-bottom: 1px;
+}
+
+/* Right Proof Column */
+.case-proof-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: rgba(11, 20, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  padding: 2.5mm;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  justify-content: center;
+}
+
+.proof-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5mm;
+  padding-bottom: 1mm;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.proof-title {
+  font-size: 7.8px;
+  font-weight: 800;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.proof-verified-badge {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  font-size: 7px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.proof-images-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  min-height: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.proof-img-frame {
+  width: 100%;
+  flex: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+}
+
+.proof-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.proof-footer-caption {
+  font-size: 7px;
+  color: #64748b;
+  text-align: right;
+  margin-top: 1mm;
+  flex-shrink: 0;
+  font-style: italic;
+}
+
+/* Slide 12 - Partnership Models & Free Audit */
+.closing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5mm;
+  flex: 1;
+  margin-top: 1mm;
+  margin-bottom: 2mm;
+}
+
+.closing-card {
+  background: rgba(15, 26, 54, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 4mm 4.5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closing-card-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.5mm;
+}
+
+.closing-card-desc {
+  font-size: 8.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 3mm;
+}
+
+.model-item {
+  background: rgba(11, 20, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 2.5mm 3mm;
+  margin-bottom: 2mm;
+}
+
+.model-name {
+  font-size: 9px;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 1px;
+}
+
+.model-text {
+  font-size: 7.8px;
+  color: #94a3b8;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.audit-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3mm 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+
+.audit-checklist li {
+  font-size: 8.3px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.35;
+}
+
+.audit-checklist li span.check {
+  color: #22c55e;
+  font-weight: 900;
+  font-size: 9px;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(14, 165, 233, 0.1));
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
+  border-radius: 10px;
+  padding: 3.5mm 4mm;
+  text-align: center;
+}
+
+.cta-heading {
+  font-size: 11px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1mm;
+}
+
+.cta-sub {
+  font-size: 8px;
+  color: #94a3b8;
+  margin-bottom: 2mm;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #22c55e;
+  color: #060b18;
+  font-size: 9.5px;
+  font-weight: 900;
+  padding: 2.5mm 6mm;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  letter-spacing: 0.2px;
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================================
+     SLIDE 1: COVER & EXECUTIVE TRACK RECORD
+     ========================================================================= -->
+<section class="slide">
+  <div class="cover-container">
+    <div class="slide-header">
+      <div class="running-brand">
+        <div class="running-logo">AE</div>
+        <div>
+          <span class="running-name">Ahmed Essam Mahmoud</span>
+          <span class="running-title"> • Performance Marketing & Growth Specialist</span>
+        </div>
+      </div>
+      <div class="running-meta">
+        <span class="case-platform-badge">Executive Portfolio Deck</span>
+        <span class="running-tag">Verified Attribution</span>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="cover-left">
+        <div class="cover-eyebrow">
+          <span class="pulse-dot"></span>
+          <span>Verified Track Record & Case Study Vault</span>
+        </div>
+        <h1 class="cover-name">Ahmed Essam Mahmoud</h1>
+        <div class="cover-tagline">Performance Marketing Strategist & DTC Paid Acquisition Engineer</div>
+        <p class="cover-bio">
+          Quantitative Growth Specialist with a proven track record engineering scalable customer acquisition systems for 7-figure DTC brands across <strong>Egypt and the GCC (Saudi Arabia, UAE, Qatar, Oman)</strong>. Specialized in full-funnel media buying across <strong>Meta Ads, TikTok Spark Ads, and Google Ads</strong>, combining unit economics modeling (MER, CAC, AOV, Contribution Margin) with high-velocity creative testing sandboxes.
+        </p>
+        <div class="cover-markets">
+          <span class="label">Primary Scale Markets:</span>
+          <span>🇪🇬 Egypt • 🇸🇦 Saudi Arabia • 🇦🇪 UAE • 🇴🇲 Oman • 🇶🇦 Qatar</span>
+        </div>
+      </div>
+
+      <div class="cover-photo-wrapper">
+        <div class="cover-photo-shell">
+          <img src="personal photo.jpg" alt="Ahmed Essam Mahmoud" class="cover-photo-img">
+        </div>
+        <div class="cover-photo-badge">
+          <span class="pulse-dot"></span>
+          <span>Open to Global Remote Roles</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aggregated High-Impact Metric Ribbon -->
+    <div class="metrics-grid-hero">
+      <div class="hero-metric-card">
+        <div class="hero-metric-val green">4.2M+ EGP</div>
+        <div class="hero-metric-label">Tracked DTC Sales</div>
+        <div class="hero-metric-sub">Verified in Ad Accounts</div>
+      </div>
+      <div class="hero-metric-card">
+        <div class="hero-metric-val green">6.55x</div>
+        <div class="hero-metric-label">Blended ROAS</div>
+        <div class="hero-metric-sub">Across Scaled Portfolios</div>
+      </div>
+      <div class="hero-metric-card">
+        <div class="hero-metric-val blue">2,147+</div>
+        <div class="hero-metric-label">Qualified Leads / SQLs</div>
+        <div class="hero-metric-sub">High-Ticket Gulf Inquiries</div>
+      </div>
+      <div class="hero-metric-card">
+        <div class="hero-metric-val purple">21.24x</div>
+        <div class="hero-metric-label">Peak Creative ROAS</div>
+        <div class="hero-metric-sub">High-Velocity ABO Sandbox</div>
+      </div>
+      <div class="hero-metric-card">
+        <div class="hero-metric-val amber">3.7M+</div>
+        <div class="hero-metric-label">Targeted Impressions</div>
+        <div class="hero-metric-sub">GCC & MENA Auctions</div>
+      </div>
+    </div>
+
+    <!-- Contacts Bar -->
+    <div class="cover-contacts">
+      <a href="https://wa.me/message/YCNZBEYHQ5YEH1" class="contact-pill wa" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021z"/></svg>
+        <span>WhatsApp: +20 120 477 2811</span>
+      </a>
+      <a href="mailto:ahmmeddmmahmmoudd@gmail.com" class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>ahmmeddmmahmmoudd@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/ahmmeddmmahmmoudd" class="contact-pill" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>linkedin.com/in/ahmmeddmmahmmoudd</span>
+      </a>
+      <a href="https://ahmmeddmmahmmoudd.github.io/Media-Buying-Portfolio" class="contact-pill" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span>Live Web Portfolio ↗</span>
+      </a>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-left">
+        <span>Cairo, Egypt • Available Globally (Remote / Relocation)</span>
+      </div>
+      <div class="footer-center">Confidential Case Studies • Commercial Performance Deck</div>
+      <div class="footer-right">
+        <span>Slide 01 of 12</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 2: THE GROWTH OPERATING SYSTEM (METHODOLOGY)
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing & Growth Specialist</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="case-platform-badge">Scientific Framework</span>
+      <span class="running-tag">The 3 Pillars of Scale</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 2mm;">
+    <div class="case-badge-cat" style="width: fit-content; margin-bottom: 1.5mm;">⚡ Systematic Scale Architecture</div>
+    <h2 style="font-size: 18px; font-weight: 900; color: #ffffff; margin: 0 0 1mm 0; letter-spacing: -0.4px;">The Growth Operating System</h2>
+    <p style="font-size: 9px; color: #94a3b8; margin: 0; line-height: 1.35; max-width: 230mm;">
+      Scaling 7-figure DTC brands is not about superficial ad hacks or bidding tricks. It is an engineering discipline centered on <strong>Unit Economics Modeling</strong>, <strong>High-Velocity Creative Sandboxing</strong>, and <strong>Algorithmic Liquidity</strong>.
+    </p>
+  </div>
+
+  <div class="methodology-grid">
+    <!-- Pillar 1 -->
+    <div class="pillar-card pillar-1">
+      <div class="pillar-header">
+        <div class="pillar-num">01</div>
+        <div>
+          <div class="pillar-title">Funnel & Unit Economics Audit</div>
+          <div class="pillar-subtitle">Diagnostic Baseline & Profit Floor</div>
+        </div>
+      </div>
+      <ul class="pillar-bullets">
+        <li><strong>Break-Even CAC & MER Ceilings:</strong> Calculate contribution margin per SKU before allocating $1 to ads. Establish hard CPA thresholds so scaling never sacrifices net profit.</li>
+        <li><strong>High-AOV Bundle Architecture:</strong> Restructure store catalog into tiered routine bundles (Buy 2 Get 1, Routine Boxes) lifting AOV by 40%–80% to absorb rising auction bids.</li>
+        <li><strong>Frictionless Checkout Funnels:</strong> Eliminate manual WhatsApp ordering bottlenecks by transitioning stores to high-speed Shopify checkout with automated COD confirmations.</li>
+      </ul>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="pillar-card pillar-2">
+      <div class="pillar-header">
+        <div class="pillar-num">02</div>
+        <div>
+          <div class="pillar-title">High-Velocity Creative Sandbox</div>
+          <div class="pillar-subtitle">Dynamic Testing & Asset Velocity</div>
+        </div>
+      </div>
+      <ul class="pillar-bullets">
+        <li><strong>Dedicated ABO Testing Engine:</strong> Launch 10–15 distinct hooks and visual angles every week in clean ABO environments with zero budget dilution from existing winners.</li>
+        <li><strong>Hyper-Localized Regional Scripting:</strong> Craft native GCC/MENA hooks addressing authentic regional buyer psychology, cultural resonance, and clear risk reversals.</li>
+        <li><strong>Macro UGC & Sensory Demonstration:</strong> Showcase craftsmanship close-ups, unboxing rituals, and texture reveals to skyrocket perceived value and click-through intent.</li>
+      </ul>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="pillar-card pillar-3">
+      <div class="pillar-header">
+        <div class="pillar-num">03</div>
+        <div>
+          <div class="pillar-title">Algorithmic Scale & Margin Defense</div>
+          <div class="pillar-subtitle">CBO Consolidation & Automated Guardrails</div>
+        </div>
+      </div>
+      <ul class="pillar-bullets">
+        <li><strong>Liquidity-First CBO & ASC Scaling:</strong> Graduate validated sandbox winners into consolidated Advantage+ Shopping Campaigns (ASC) and high-liquidity CBO scaling engines.</li>
+        <li><strong>Dynamic Automated Stop-Loss Rules:</strong> Enforce automated rules that throttle underperforming ad sets whenever CPA deviates 20% from target, protecting blended ROAS.</li>
+        <li><strong>Horizontal Audience Pocket Expansion:</strong> Penetrate new demographic and lookalike cohorts incrementally without cannibalizing existing active auctions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="methodology-bottom-bar">
+    <span class="stack-title">Core Acquisition & Attribution Tech Stack:</span>
+    <div class="stack-pills">
+      <span class="stack-pill">Meta Ads Manager (ASC/CBO/ABO)</span>
+      <span class="stack-pill">TikTok Ads Manager (Spark Ads)</span>
+      <span class="stack-pill">Google Ads (Search & PMax)</span>
+      <span class="stack-pill">Meta Conversions API (CAPI)</span>
+      <span class="stack-pill">Shopify Plus</span>
+      <span class="stack-pill">Google Analytics 4 & GTM</span>
+      <span class="stack-pill">WhatsApp Business API</span>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Ahmed Essam Mahmoud • Performance Marketing & Growth Specialist</span>
+    </div>
+    <div class="footer-center">Growth Operating System • Execution Methodology</div>
+    <div class="footer-right">
+      <span>Slide 02 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 3: CASE STUDY 1 — SKINCARE 1M+ REVENUE SCALE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #01</span>
+      <span>Egypt • Skincare Scale</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Skincare Scale</span>
+        <h2 class="case-main-title">Skincare 1M+ Revenue Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Ads CBO + ABO</span>
+        <span class="case-highlight-chip">🚀 150K/mo Capped ➔ 1.04M EGP Scale • 21.24x Peak Creative</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">1,039,363 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">99,911 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">10.40x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Volume & AOV</div>
+        <div class="case-kpi-val">587 Orders • 1,770 AOV</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Brand was capped at ~150K EGP/mo revenue with complete reliance on labor-intensive WhatsApp messaging ads, fragmented cart values from single-product sales, and surging customer acquisition costs whenever daily spend was increased.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Audit uncovered a <strong>68% drop-off in manual chat orders</strong> due to delayed sales response, severe single-bottle order economics that failed to absorb Meta CPM spikes, and creative fatigue on static product shots.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Migrated acquisition to direct Shopify checkout with Meta Conversions API (CAPI) server tracking.</li>
+            <li>Engineered 3 high-AOV "Complete Routine Bundles", lifting Average Order Value from ~720 EGP to <strong>1,770 EGP (+145% AOV lift)</strong>.</li>
+            <li>Built an ABO testing sandbox launching 8 video hooks weekly that fed a high-liquidity CBO scaling engine.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Scaled gross store revenue to <strong>1,039,363 EGP (1.04M EGP)</strong> from <strong>99,911 EGP spend</strong> at an extraordinary <strong>10.40x blended Purchase ROAS</strong> across 587 orders. Core campaign generated 919.2K EGP at 10.01x ROAS, with high-velocity creative tests reaching a peak <strong>21.24x ROAS</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Verified Meta Ads Manager Dashboard Proof</span>
+          <span class="proof-verified-badge">✓ 10.40x Blended ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="skinoria-scale.png" alt="Skincare 1M Revenue Scale Dashboard" class="proof-img">
+          </div>
+          <div class="proof-img-frame" style="max-height: 45%;">
+            <img src="skinoria-new.png" alt="Skincare Campaign Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 1,039,363 EGP Purchase Conversion Value • 10.40x Purchase ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Skincare 1M+ Revenue Scale • Meta Ads CBO + ABO</span>
+    </div>
+    <div class="footer-center">Verified Case Study #01 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 03 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 4: CASE STUDY 2 — 6x+ ROAS E-COMMERCE PORTFOLIO
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #02</span>
+      <span>Egypt • E-Commerce Multi-Campaign</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • E-Commerce Multi-Campaign</span>
+        <h2 class="case-main-title">6x+ ROAS Multi-Campaign Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Ads Scale (CBO + ASC)</span>
+        <span class="case-highlight-chip">🔥 Ad Fatigue Burn ➔ 1.91M EGP Volume • 2,053 Orders</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">1,909,514 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">332,671 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">5.74x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Volume & Orders</div>
+        <div class="case-kpi-val">2,053 Orders • 162 CPA</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Purchase ROAS collapsed below 2.2x whenever scaling budgets above initial thresholds due to acute creative fatigue and heavy audience overlap in identical broad segments.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Ad account audit revealed multiple ad sets bidding against each other in the same auction, burning budget on fatigued video assets, and lacking dynamic catalog retargeting.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Architected a fully segmented account framework: dedicated ABO Testing Sandbox launching 10 hooks weekly.</li>
+            <li>Fed winning creative assets into a high-liquidity CBO/ASC Scaling Engine with automated CPA stop-loss rules.</li>
+            <li>Activated post-purchase dynamic catalog retargeting to maximize repurchase frequency and lifetime value.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Generated <strong>1,909,514 EGP (~1.91M EGP)</strong> in purchase conversion value from <strong>332,671 EGP ad spend</strong> across <strong>2,053 purchases</strong>, holding a <strong>5.74x Blended Purchase ROAS</strong>. Top scaling ad sets achieved peak returns of <strong>17.50x, 10.24x, and 8.79x ROAS</strong> across 3.7M impressions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Multi-Campaign Meta Ads Scale Proof</span>
+          <span class="proof-verified-badge">✓ 1.91M EGP Scale Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="minz-6x.png" alt="6x ROAS E-Commerce Campaign Portfolio Proof" class="proof-img">
+          </div>
+          <div class="proof-img-frame">
+            <img src="minz-scale.png" alt="Multi-Campaign Ad Set Breakdown Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 1,909,514 EGP Total Value • 2,053 Purchases • 5.74x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>6x+ ROAS Multi-Campaign Scale • Meta CBO & ASC</span>
+    </div>
+    <div class="footer-center">Verified Case Study #02 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 04 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 5: CASE STUDY 3 — OMAN & GCC HIGH-TICKET SCALE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #03</span>
+      <span>Oman / GCC • High-Ticket</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Oman / GCC • High-Ticket</span>
+        <h2 class="case-main-title">Oman & GCC High-Ticket Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">TikTok Spark Ads & Instant Forms</span>
+        <span class="case-highlight-chip">💎 High GCC CPMs ➔ 1.38 OMR CPL • 2,147 Qualified Buyers</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Verified Conversions</div>
+        <div class="case-kpi-val highlight">2,147 SQLs</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Cost Per Qualified Lead</div>
+        <div class="case-kpi-val highlight">1.38 OMR</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Impressions</div>
+        <div class="case-kpi-val">6.21M</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Outbound Traffic</div>
+        <div class="case-kpi-val">29.8K Clicks</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Punishing Gulf CPM auctions paired with unqualified, low-intent inquiries that overwhelmed the client's sales team without producing closed transactions.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Broad generic video copy failed to filter out curiosity clickers; instant forms lacked qualifying friction; slow lead follow-up (>4 hours) allowed high-intent Gulf buyers to go cold.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Scripted hyper-localized TikTok Spark Ads with upfront financial qualifiers in the first 2-second hook.</li>
+            <li>Enforced custom qualification dropdowns and verification fields on TikTok instant lead forms.</li>
+            <li>Automated a <15-minute speed-to-lead CRM routing protocol with instant WhatsApp sales assignment.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Acquired <strong>2,147 verified high-ticket Sales Qualified Leads (SQLs)</strong> at an average cost of <strong>1.38 OMR</strong> (with active campaigns delivering at <strong>0.70 OMR</strong>), driving <strong>29,800 outbound qualified clicks</strong> across <strong>6.21M impressions</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 TikTok Ads Manager Gulf Campaign Proof</span>
+          <span class="proof-verified-badge">✓ 2,147 Conversions Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="18.PNG" alt="Oman GCC High-Ticket TikTok Scale Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: TikTok Ads Manager • 2,147 Conversions • 1.38 OMR CPA • 6.21M Impressions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Oman & GCC High-Ticket Scale • TikTok Spark Ads</span>
+    </div>
+    <div class="footer-center">Verified Case Study #03 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 05 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 6: CASE STUDY 4 — ACCESSORIES & WATCHES SCALE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #04</span>
+      <span>Egypt • Luxury Accessories</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Luxury Accessories</span>
+        <h2 class="case-main-title">Accessories & Men's Watches Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Ads Dynamic + Advantage+</span>
+        <span class="case-highlight-chip">⌚ Mid-Funnel Slump ➔ 9.23x ROAS • 745 Buyers</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">377,935 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">40,935 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">9.23x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Top Angle Return</div>
+        <div class="case-kpi-val">12.38x ROAS • 745 Orders</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Stagnant daily sales velocity and missed revenue surges during prime seasonal buying windows due to flat, uninspiring static image ads.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Product possessed high aesthetic craftsmanship but creative delivery lacked motion, macro dial close-ups, and emotional gift-appeal psychological hooks.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Deployed sprint-based promo architecture leveraging authentic urgency and limited-inventory countdowns.</li>
+            <li>Shot native macro-detail UGC video assets highlighting watch dials, glass reflections, and premium packaging.</li>
+            <li>Targeted high-value lookalikes seeded from the top 20% past buyers alongside luxury lifestyle clusters.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Generated <strong>377,935 EGP in revenue</strong> from <strong>40,935 EGP ad spend</strong> at <strong>9.23x Blended ROAS</strong> across <strong>745 orders</strong>, with the hero creative angle generating 137,600 EGP alone at <strong>12.38x ROAS</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Meta Ads Manager Campaign Dashboard Proof</span>
+          <span class="proof-verified-badge">✓ 9.23x ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="1.jpg" alt="Accessories Watches Scale Meta Proof" class="proof-img">
+          </div>
+          <div class="proof-img-frame">
+            <img src="2.jpg" alt="Watches Ad Set Breakdown Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 377,935 EGP Total Revenue • 745 Purchases • 9.23x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Accessories & Men's Watches Scale • Meta Ads</span>
+    </div>
+    <div class="footer-center">Verified Case Study #04 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 06 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 7: CASE STUDY 5 — WOMEN'S FASHION ROAS SURGE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #05</span>
+      <span>Egypt • Women Fashion</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Women Fashion</span>
+        <h2 class="case-main-title">Women's Fashion Campaign Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Advantage+ Shopping (ASC)</span>
+        <span class="case-highlight-chip">👗 Fast Creative Fatigue ➔ 6.60x ROAS • 823 Orders</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">368,485 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">55,807 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">6.60x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Orders Completed</div>
+        <div class="case-kpi-val">823 Orders</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Severe creative fatigue in women's apparel (burnout within 10–14 days) causing CPA to spike abruptly whenever budgets were increased.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Store relied on singular hero models with limited styling variations, missing key impulse-buying hooks and post-purchase repeat triggers.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Built a dynamic creative matrix testing 12 distinct styling and sizing angles per collection every 2 weeks.</li>
+            <li>Implemented post-purchase bundle upsells and dynamic carousel retargeting for high-frequency catalog shoppers.</li>
+            <li>Leveraged Meta Advantage+ Shopping Campaigns (ASC) balanced with custom manual exclusions to protect margin.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Achieved <strong>368,485 EGP revenue</strong> from <strong>55,807 EGP spend</strong> at <strong>6.60x Blended ROAS</strong> across <strong>823 completed orders</strong>, maintaining stable CPA and healthy contribution margin throughout aggressive scaling.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Meta Advantage+ Shopping Proof</span>
+          <span class="proof-verified-badge">✓ 6.60x ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="5.jpeg" alt="Women Fashion ROAS Surge Proof" class="proof-img">
+          </div>
+          <div class="proof-img-frame">
+            <img src="6.jpg" alt="Women Fashion Ad Set Scale Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 368,485 EGP Revenue • 823 Purchases • 6.60x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Women's Fashion Scale • Meta Advantage+ (ASC)</span>
+    </div>
+    <div class="footer-center">Verified Case Study #05 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 07 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 8: CASE STUDY 6 — LUXURY FRAGRANCE & PERFUME SCALE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #06</span>
+      <span>Egypt • Luxury Fragrances</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Luxury Fragrances</span>
+        <h2 class="case-main-title">Sales Perfumes & Fragrances Scale</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Conversion & Retargeting</span>
+        <span class="case-highlight-chip">✨ Scent Hesitation ➔ 6.55x ROAS • 430 Orders</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">252,060 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">38,474 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">6.55x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Efficiency Gain</div>
+        <div class="case-kpi-val">CAC Slashed by 42%</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            High online fragrance buying friction due to customer hesitation purchasing unsmelled perfumes digitally, leading to low cold conversion rates.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Messaging focused on ingredients rather than psychological olfactory triggers and lacked a risk-reversal guarantee or tester mechanism.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Restructured positioning around longevity, complimentary sample testers with return guarantees, and social compliment scenarios.</li>
+            <li>Launched sensory hook video ads capturing real-time blind reaction tests and opening unboxing experiences.</li>
+            <li>Aggressive dynamic retargeting of scent note page visitors with limited-quantity promotional bundles.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Delivered <strong>252,060 EGP in sales</strong> from <strong>38,474 EGP spend</strong> at <strong>6.55x Blended ROAS</strong> across <strong>430 orders</strong>, slashing customer acquisition cost by <strong>42%</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Fragrance Meta Ads Dashboard Proof</span>
+          <span class="proof-verified-badge">✓ 6.55x ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="7.jpg" alt="Perfumes Fragrances Scale Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 252,060 EGP Total Revenue • 430 Purchases • 6.55x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Luxury Fragrances Scale • Meta Ads Conversion</span>
+    </div>
+    <div class="footer-center">Verified Case Study #06 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 08 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 9: CASE STUDY 7 — PERFUMES BRAND SCALE & MARGIN DEFENSE
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #07</span>
+      <span>Egypt • Perfume Scale</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Perfume Scale</span>
+        <h2 class="case-main-title">Perfumes Brand Scale & Margin Defense</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Advantage+ & Tiered Bundles</span>
+        <span class="case-highlight-chip">💰 Margin Compression ➔ 411K Net Profit • 9.09x ROAS</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">462,670 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Gross Margin</div>
+        <div class="case-kpi-val highlight">411,780 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">50,890 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">9.09x (575 Orders)</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Thin net contribution margins due to high operational overhead and advertising fatigue eating into bottom-line profitability.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Single-bottle purchases yielded insufficient margin to support rising ad auction bids; customer lifetime value was under-leveraged.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Restructured offer architecture around tiered bundles (Buy 2 Get 1 Free / Duo Gift Boxes) lifting cart size.</li>
+            <li>Deployed automated WhatsApp abandoned cart recovery sequences reclaiming high-intent drop-offs.</li>
+            <li>Scaled high-converting seasonal gifting hooks on Meta Advantage+ with disciplined budget allocation.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Generated <strong>462,670 EGP in revenue</strong> with <strong>411,780 EGP gross contribution margin</strong> from <strong>50,890 EGP ad spend</strong> at <strong>9.09x Blended ROAS</strong> across <strong>575 completed orders</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Perfumes Brand Meta Ads Dashboard Proof</span>
+          <span class="proof-verified-badge">✓ 9.09x ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="14.jpg" alt="Perfumes Brand Scaling Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 462,670 EGP Revenue • 575 Purchases • 9.09x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Perfumes Brand Scale • Meta Advantage+</span>
+    </div>
+    <div class="footer-center">Verified Case Study #07 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 09 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 10: CASE STUDY 8 — MEN'S FASHION COLD LAUNCH
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #08</span>
+      <span>Egypt • Men Fashion</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Men Fashion</span>
+        <h2 class="case-main-title">Men's Fashion Cold Brand Launch</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">Meta Cold Traffic & Catalog</span>
+        <span class="case-highlight-chip">📈 Cold Brand Launch ➔ +376% MoM • 16.14x ROAS</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Revenue</div>
+        <div class="case-kpi-val highlight">296,069 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Ad Spend</div>
+        <div class="case-kpi-val">18,344 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Blended ROAS</div>
+        <div class="case-kpi-val highlight">16.14x</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">MoM Growth Rate</div>
+        <div class="case-kpi-val">+376% Growth • 364 Orders</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Starting a men's fashion apparel store from scratch with high cold customer acquisition costs and zero initial brand trust in a saturated market.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Store lacked social proof and clear fit clarity, causing first-time shoppers to hesitate on cold traffic; ad creative failed to showcase fabric texture.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Built a high-urgency launch campaign centered around introductory bundles and clear size-guarantee warranties.</li>
+            <li>Deployed dynamic catalog carousels showcasing top trending seasonal items alongside verified customer reviews.</li>
+            <li>Strict CPA bidding guardrails preventing budget waste during exploratory learning phase.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Surged monthly store revenue by <strong>+376% to 296,069 EGP</strong> across <strong>364 orders</strong> at a massive <strong>16.14x Blended ROAS</strong> from just <strong>18,344 EGP spend</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Men's Fashion Launch Meta Ads Proof</span>
+          <span class="proof-verified-badge">✓ 16.14x ROAS Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="3.jpg" alt="Men Fashion Launch Proof" class="proof-img">
+          </div>
+          <div class="proof-img-frame">
+            <img src="4.jpg" alt="Men Fashion Ad Set Breakdown" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 296,069 EGP Revenue • 364 Purchases • 16.14x ROAS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Men's Fashion Cold Launch • Meta Ads</span>
+    </div>
+    <div class="footer-center">Verified Case Study #08 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 10 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 11: CASE STUDY 9 — AESTHETIC CLINIC PATIENT ACQUISITION
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing Case Study</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="running-tag">Case #09</span>
+      <span>Egypt • Aesthetic & Medical</span>
+    </div>
+  </div>
+
+  <div class="case-content-area">
+    <div class="case-top-strip">
+      <div class="case-top-left">
+        <span class="case-badge-cat">Egypt • Aesthetic & Medical</span>
+        <h2 class="case-main-title">Aesthetic Clinic Patient Acquisition</h2>
+      </div>
+      <div class="case-top-right">
+        <span class="case-platform-badge">WhatsApp Lead Ads & SLA</span>
+        <span class="case-highlight-chip">🏥 4.12 EGP / Msg • High-Show Rate Medical Inquiries</span>
+      </div>
+    </div>
+
+    <div class="case-kpi-ribbon">
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Cost Per Conversation</div>
+        <div class="case-kpi-val highlight">4.12 EGP</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Targeted Reach</div>
+        <div class="case-kpi-val">732,200 Reach</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">Total Impressions</div>
+        <div class="case-kpi-val">1.83M Impressions</div>
+      </div>
+      <div class="case-kpi-box">
+        <div class="case-kpi-label">In-Clinic Show Rate</div>
+        <div class="case-kpi-val highlight">Doubled Show Rate</div>
+      </div>
+    </div>
+
+    <div class="case-split">
+      <!-- Left Column: Strategic Narrative -->
+      <div class="case-narrative">
+        <div class="narrative-block bottleneck">
+          <div class="narrative-header">🔴 1. The Core Bottleneck & Bleed Point</div>
+          <p class="narrative-text">
+            Surging patient acquisition costs for aesthetic clinics coupled with high consultation no-show rates exceeding 50%.
+          </p>
+        </div>
+
+        <div class="narrative-block audit">
+          <div class="narrative-header">🔍 2. Diagnostic Audit (Funnel & Unit Economics)</div>
+          <p class="narrative-text">
+            Slow staff follow-up times allowed prospect interest to cool rapidly, while ad creative failed to emphasize medical credentials, hygiene standards, and doctor authority.
+          </p>
+        </div>
+
+        <div class="narrative-block playbook">
+          <div class="narrative-header">⚡ 3. The Execution Playbook</div>
+          <ul class="narrative-list">
+            <li>Introduced low-friction introductory diagnostic consultation packages via direct WhatsApp Click-to-Message ads.</li>
+            <li>Implemented strict under-15-minute response protocol (Speed-to-Lead SLA) with clinic map and instant slot booking.</li>
+            <li>Automated appointment confirmation and 24-hour reminder sequence drastically cutting consultation no-shows.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-block impact">
+          <div class="narrative-header">🟢 4. Commercial Impact & Verified Outcome</div>
+          <p class="narrative-text">
+            Generated thousands of highly qualified patient inquiries at an extraordinary <strong>4.12 EGP per conversation</strong>, reaching <strong>732K targeted local prospects</strong> and <strong>doubling verified clinic show rates</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Proof -->
+      <div class="case-proof-wrapper">
+        <div class="proof-header">
+          <span class="proof-title">📊 Clinic WhatsApp Lead Ads Proof</span>
+          <span class="proof-verified-badge">✓ 4.12 EGP CPL Verified</span>
+        </div>
+        <div class="proof-images-container">
+          <div class="proof-img-frame">
+            <img src="15.PNG" alt="Aesthetic Clinic Messaging Scale Proof" class="proof-img">
+          </div>
+          <div class="proof-img-frame">
+            <img src="16.PNG" alt="Aesthetic Clinic Cost Per Result Proof" class="proof-img">
+          </div>
+        </div>
+        <div class="proof-footer-caption">Attribution: Meta Ads Manager • 4.12 EGP / Msg • 732.2K Reach • High-Intent Medical Leads</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Aesthetic Clinic Acquisition • WhatsApp Lead Ads</span>
+    </div>
+    <div class="footer-center">Verified Case Study #09 • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 11 of 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SLIDE 12: PARTNERSHIP MODELS & FREE AUDIT (NEXT STEPS)
+     ========================================================================= -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="running-brand">
+      <div class="running-logo">AE</div>
+      <div>
+        <span class="running-name">Ahmed Essam Mahmoud</span>
+        <span class="running-title"> • Performance Marketing & Growth Specialist</span>
+      </div>
+    </div>
+    <div class="running-meta">
+      <span class="case-platform-badge">Collaboration & Contact</span>
+      <span class="running-tag">Available Globally</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 2mm;">
+    <div class="case-badge-cat" style="width: fit-content; margin-bottom: 1.5mm;">🤝 Next Steps & Working Together</div>
+    <h2 style="font-size: 18px; font-weight: 900; color: #ffffff; margin: 0 0 1mm 0; letter-spacing: -0.4px;">Let's Build Your Brand's Next Growth Phase</h2>
+    <p style="font-size: 9px; color: #94a3b8; margin: 0; line-height: 1.35;">
+      Whether you are scaling a fast-growing 7-figure DTC brand or recruiting a Senior Growth Marketer for an international team, here is how we can collaborate.
+    </p>
+  </div>
+
+  <div class="closing-grid">
+    <!-- Left: 3 Engagement Models -->
+    <div class="closing-card">
+      <div>
+        <div class="closing-card-title">💼 Engagement & Partnership Frameworks</div>
+        <p class="closing-card-desc">Flexible structures designed for high-conviction founders and high-performance teams.</p>
+        
+        <div class="model-item">
+          <div class="model-name">1. Full-Funnel Performance Marketing Retainer (Growth Partner)</div>
+          <p class="model-text">Complete management of Meta, TikTok, and Google Ads accounts, weekly creative testing sprints, and unit economics/MER reporting.</p>
+        </div>
+
+        <div class="model-item">
+          <div class="model-name">2. International Full-Time Remote Roles (Senior Growth / Media Buyer)</div>
+          <p class="model-text">Dedicated in-house growth marketer leading scalable acquisition, creative direction, attribution systems, and team leadership.</p>
+        </div>
+
+        <div class="model-item" style="margin-bottom: 0;">
+          <div class="model-name">3. Growth Strategy & Ad Account Audit Consultation</div>
+          <p class="model-text">One-time deep dive diagnosing account bleed points, creative fatigue, offer architecture, and conversion rate bottlenecks.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Free Audit Offer + Direct Contacts -->
+    <div class="closing-card">
+      <div>
+        <div class="closing-card-title">🎁 Complimentary Performance Marketing Audit</div>
+        <p class="closing-card-desc">For qualified DTC e-commerce brands spending $3,000+/mo looking to scale profitably.</p>
+
+        <ul class="audit-checklist">
+          <li><span class="check">✓</span> <span><strong>Funnel & Unit Economics Teardown:</strong> Identifying hidden CAC bleed points and conversion drop-offs.</span></li>
+          <li><span class="check">✓</span> <span><strong>Ad Account Structure Audit:</strong> Eliminating auction overlap, budget dilution, and liquidity bottlenecks.</span></li>
+          <li><span class="check">✓</span> <span><strong>Creative Fatigue Diagnostics:</strong> Evaluating your hook retention, CTR benchmarks, and creative testing velocity.</span></li>
+          <li><span class="check">✓</span> <span><strong>Actionable 30-Day Scale Roadmap:</strong> Clear tactical steps to reach next revenue milestone with margin defense.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <div class="cta-heading">Ready to scale or audit your brand?</div>
+        <div class="cta-sub">Reach out directly via WhatsApp for an immediate consultation.</div>
+        <a href="https://wa.me/message/YCNZBEYHQ5YEH1" class="cta-button" target="_blank">
+          <span>Chat on WhatsApp Directly ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-contacts" style="margin-top: 1mm;">
+    <a href="https://wa.me/message/YCNZBEYHQ5YEH1" class="contact-pill wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 21.325l-.019.006A9.972 9.972 0 0 1 2.05 11.369h.005C2.055 5.86 6.541 1.385 12.062 1.385c5.522 0 10.01 4.475 10.01 10.003 0 5.527-4.488 10.004-10.01 10.004a9.96 9.96 0 0 1-5.06-1.378l-5.603 1.467 1.493-5.462a9.932 9.932 0 0 1-1.353-5.021z"/></svg>
+      <span>+20 120 477 2811</span>
+    </a>
+    <a href="mailto:ahmmeddmmahmmoudd@gmail.com" class="contact-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      <span>ahmmeddmmahmmoudd@gmail.com</span>
+    </a>
+    <a href="https://linkedin.com/in/ahmmeddmmahmmoudd" class="contact-pill" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      <span>linkedin.com/in/ahmmeddmmahmmoudd</span>
+    </a>
+    <a href="https://ahmmeddmmahmmoudd.github.io/Media-Buying-Portfolio" class="contact-pill" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      <span>ahmmeddmmahmmoudd.github.io/Media-Buying-Portfolio</span>
+    </a>
+  </div>
+
+  <div class="slide-footer">
+    <div class="footer-left">
+      <span>Cairo, Egypt • Available Globally (Remote / Relocation)</span>
+    </div>
+    <div class="footer-center">Confidential Performance Portfolio • Ahmed Essam Mahmoud</div>
+    <div class="footer-right">
+      <span>Slide 12 of 12</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
